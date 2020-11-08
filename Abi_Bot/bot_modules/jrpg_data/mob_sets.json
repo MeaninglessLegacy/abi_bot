@@ -1,0 +1,22 @@
+{
+	"Small" : {
+		"Tracker_Wyrm_A" : {
+			"description" : "There is low humming noise somewhere close by.",
+			"mobs" : {
+				"Tracker_Wyrm" : {
+					"tier" : 1,
+					"number" : 1
+				}
+			}
+		},
+		"Tracker_Wyrm_B" : {
+			"description" : "The party hears the howls of Tracker Wyrms nearby.",
+			"mobs" : {
+				"Tracker_Wyrm" : {
+					"tier" : 1,
+					"number" : 3
+				}
+			}
+		}
+	}
+}

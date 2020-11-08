@@ -1,0 +1,332 @@
+{
+	"greatsword" : {
+		"type" : "weapon",
+		"wield_type" : "two_hand",
+		"class_lock" : [
+			"knight"
+		],
+		"names" : {
+			"Broadsword" : 1
+		},
+		"primary_stat_base" : 10,
+		"base_ac" : 25,
+		"primary_stat" : "attack_power",
+		"stat_generation" : {
+			"stat_count" : 1,
+			"attribute_count" : 0.75,
+			"status_count" : 0.75,
+			"elemental_count" : 1,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+				"prepare" : 1
+			},
+			"ALL" : {
+				"critical_impact" : 1,
+				"shatter_drive" : 1
+			}
+		}
+	},
+	"sword" : {
+		"type" : "weapon",
+		"wield_type" : "one_hand",
+		"class_lock" : [
+			"knight",
+			"rogue"
+		],
+		"names" : {
+			"Sword" : 1,
+			"Longsword" : 1
+		},
+		"primary_stat_base" : 4,
+		"base_ac" : 10,
+		"primary_stat" : "attack_power",
+		"stat_generation" : {
+			"stat_count" : 0.75,
+			"attribute_count" : 0.6,
+			"status_count" : 0.5,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+				"retaliate" : 1,
+				"quick_strike" : 1
+			}
+		}
+	},
+	"shield" : {
+		"type" : "weapon",
+		"wield_type" : "offhand",
+		"class_lock" : [
+			"knight",
+			"white_mage"
+		],
+		"names" : {
+			"Shield" : 1
+		},
+		"primary_stat_base" : 4,
+		"base_ac" : 10,
+		"primary_stat" : "defence",
+		"stat_generation" : {
+			"stat_count" : 0.5,
+			"attribute_count" : 0.5,
+			"status_count" : 0.5,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+				"cover" : 1
+			},
+			"ALL" : {
+			}
+		}
+	},
+	"dagger" : {
+		"type" : "weapon",
+		"wield_type" : "one_hand",
+		"class_lock" : [
+			"knight",
+			"rogue",
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Dagger" : 1,
+			"Shortsword" : 1
+		},
+		"primary_stat_base" : 2,
+		"base_ac" : 5,
+		"primary_stat" : "attack_power",
+		"stat_generation" : {
+			"stat_count" : 0.75,
+			"attribute_count" : 0.6,
+			"status_count" : 0.5,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+				"venom_strike" : 1
+			}
+		}
+	},
+	"magic_staff" : {
+		"type" : "weapon",
+		"wield_type" : "two_hand",
+		"class_lock" : [
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Staff" : 1,
+			"Mage Cannon" : 1
+		},
+		"primary_stat_base" : 10,
+		"base_ac" : 20,
+		"primary_stat" : "faith",
+		"stat_generation" : {
+			"stat_count" : 1,
+			"attribute_count" : 0.75,
+			"status_count" : 0.75,
+			"elemental_count" : 1,
+			"ability_count" : 3
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+				"mana_shot" : 1
+			},
+			"FIRE" : {
+				"hex_blaze" : 1
+			},
+			"WATER" : {
+				"hex_torrent" : 1
+			},
+			"WIND" : {
+				"hex_gale" : 1
+			},
+			"EARTH" : {
+				"hex_blast" : 1
+			},
+			"ICE" : {
+				"hex_frost" : 1
+			},
+			"LIGHTNING" : {
+				"hex_shock" : 1
+			},
+			"LIGHT" : {
+				"hex_flare" : 1
+			},
+			"DARK" : {
+				"hex_shade" : 1
+			}
+		}
+	}
+	,
+	"spell_sword" : {
+		"type" : "weapon",
+		"wield_type" : "two_hand",
+		"class_lock" : [
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Cannonsword" : 1,
+			"Chainsword" : 1
+		},
+		"primary_stat_base" : 8,
+		"base_ac" : 15,
+		"primary_stat" : "magic_power",
+		"stat_generation" : {
+			"stat_count" : 0.75,
+			"attribute_count" : 0.6,
+			"status_count" : 0.5,
+			"elemental_count" : 0.5,
+			"ability_count" : 2
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+				"sword_drive" : 1
+			},
+			"ALL" : {
+			},
+			"LIGHT" : {
+				"flare_drive" : 1
+			},
+			"FIRE" : {
+				"blaze_drive" : 1
+			},
+			"LIGHTNING" : {
+				"shock_drive" : 1
+			}
+		}
+	},
+	"leather_head" : {
+		"type" : "armor",
+		"wield_type" : "head",
+		"class_lock" : [
+			"rogue",
+			"knight",
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Cap" : 1,
+			"Hat" : 1
+		},
+		"primary_stat_base" : 1,
+		"base_ac" : 0,
+		"primary_stat" : "defence",
+		"stat_generation" : {
+			"stat_count" : 0.5,
+			"attribute_count" : 0.2,
+			"status_count" : 0.75,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+			}
+		}
+	},
+	"leather_chest" : {
+		"type" : "armor",
+		"wield_type" : "chest",
+		"class_lock" : [
+			"rogue",
+			"knight",
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Jacket" : 1,
+			"Coat" : 1
+		},
+		"primary_stat_base" : 3,
+		"base_ac" : 0,
+		"primary_stat" : "defence",
+		"stat_generation" : {
+			"stat_count" : 0.5,
+			"attribute_count" : 0.2,
+			"status_count" : 0.75,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+			}
+		}
+	},
+	"leather_legs" : {
+		"type" : "armor",
+		"wield_type" : "legs",
+		"class_lock" : [
+			"rogue",
+			"knight",
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Shorts" : 1,
+			"Pants" : 1
+		},
+		"primary_stat_base" : 2,
+		"base_ac" : 0,
+		"primary_stat" : "defence",
+		"stat_generation" : {
+			"stat_count" : 0.5,
+			"attribute_count" : 0.2,
+			"status_count" : 0.75,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+			}
+		}
+	},
+	"leather_feet" : {
+		"type" : "armor",
+		"wield_type" : "feet",
+		"class_lock" : [
+			"rogue",
+			"knight",
+			"white_mage",
+			"black_mage"
+		],
+		"names" : {
+			"Boots" : 1,
+			"Shoes" : 1
+		},
+		"primary_stat_base" : 1,
+		"base_ac" : 0,
+		"primary_stat" : "defence",
+		"stat_generation" : {
+			"stat_count" : 0.5,
+			"attribute_count" : 0.2,
+			"status_count" : 0.75,
+			"elemental_count" : 0.5,
+			"ability_count" : 1
+		},
+		"abilities" : {
+			"GUARANTEED" : {
+			},
+			"ALL" : {
+			}
+		}
+	}
+}

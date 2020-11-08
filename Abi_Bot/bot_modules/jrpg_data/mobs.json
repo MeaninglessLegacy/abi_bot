@@ -1,0 +1,54 @@
+{
+	"Small" : {
+		"Tracker_Wyrm" : {
+			"name" : "Tracker Wyrm",
+			"tags" : [
+				"MACHINE",
+				"DRAKE"
+			],
+			"mob_settings" :{
+				"turns_taken" : 0,
+				"mob_combat_ai" : "Attack_Only"
+			},
+			"combat_stats" : {
+				"max_hp" : 170,
+				"max_mp" : 10,
+				"base_ac" : 75,
+				"attack_power" : 45,
+				"magic_power" : 70,
+				"defence" : 35,
+				"faith" : 15,
+				"critical" : 30,
+				"critical_damage" : 30,
+				"evasion" : 35,
+				"hit" : 20
+			},
+			"elemental_resistances" : {
+				"FIRE" : 10,
+				"WATER" : 10,
+				"WIND" : 10,
+				"EARTH" : 10,
+				"ICE" : 10,
+				"LIGHTNING" : -50,
+				"LIGHT" : 0,
+				"DARK" : 0
+			},
+			"status_resistances" : {
+				"paralysis" : -25,
+				"blind" : 0,
+				"silence" : 0,
+				"sleep" : 100,
+				"poison" : 100,
+				"burn" : 25,
+				"confusion" : 0,
+				"instant_death" : 0,
+				"petrify" : 0,
+				"fear" : 100,
+				"stun" : 0
+			},
+			"learned_skills" : {
+				"mechanical_plating" : 1
+			}
+		}
+	}
+}

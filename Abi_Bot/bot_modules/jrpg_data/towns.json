@@ -1,0 +1,42 @@
+{
+	"New_Coevorden":{
+		"town_name":"New_Coevorden",
+		"description":"New Coevorden is a fortress built on the ruins of a previous old-world city. Due to it's unique location, it is the hub of those looking for ancient relics.",
+		"town_location":{
+			"x":25,
+			"y":105
+		},
+		"TRADER":{
+			"last_stock":0,
+			"last_refresh":0,
+			"tier":1,
+			"max_stock":30,
+			"stock":{
+			}
+		},
+		"APOTHECARY":{
+			"items_list":{
+				"health_potion":{
+					"type" : "consumable",
+					"quality":[50,75],
+					"worth" : 5
+				},
+				"health_regen_potion":{
+					"type" : "consumable",
+					"quality":[50,75],
+					"worth" : 5
+				},
+				"mana_potion":{
+					"type" : "consumable",
+					"quality":[50,75],
+					"worth" : 5
+				},
+				"mana_regen_potion":{
+					"type" : "consumable",
+					"quality":[50,75],
+					"worth" : 5
+				}
+			}
+		}
+	}
+}

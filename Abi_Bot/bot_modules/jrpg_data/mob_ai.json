@@ -1,0 +1,30 @@
+{
+	"Tracker_Wyrm_A" : {
+		"type" : "CONDITIONAL",
+		"parameters" : {
+		}
+	},
+	"Attack_Only" : {
+		"type" : "ROTATION",
+		"parameters" : {
+			"rotation" : [
+				{
+					"action" : "cast_skill",
+					"conditions" : {
+						"ability" : "basic_attack",
+						"target" : "enemy",
+						"target_condition" : "highest_threat"
+					}
+				},
+				{
+					"action" : "cast_skill",
+					"conditions" : {
+						"ability" : "heat_beam",
+						"target" : "enemy",
+						"target_condition" : "highest_threat"
+					}
+				}
+			]
+		}
+	}
+}

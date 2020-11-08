@@ -1,0 +1,742 @@
+{
+	"greatsword" : {
+		"ALL" : {
+			"Greatsword" : 1,
+			"Broadsword" : 1,
+			"Training Greatsword" : 1,
+			"Training Broadsword" : 1,
+			"Claymore" : 1,
+			"Zweihander" : 1,
+			"Cleaver" : 1
+		},
+		"FIRE" : {
+			"Firebrand" : 1
+		},
+		"WATER" : {
+		},
+		"WIND" : {
+		},
+		"EARTH" : {
+		},
+		"ICE" : {
+			"Icebrand" : 1
+		},
+		"LIGHTNING" : {
+			"Stormcaller" : 2
+		},
+		"LIGHT" : {
+			"Durandal" : 5
+		},
+		"DARK" : {
+			"Darkheart" : 2
+		}
+	},
+	"sword" : {
+		"ALL" : {
+			"Sword" : 1,
+			"Longsword" : 1,
+			"Training Shortsword" : 1,
+			"Training Sword" : 1,
+			"Training Longsword" : 1,
+			"Kotetsu" : 1
+		},
+		"FIRE" : {
+		},
+		"WATER" : {
+		},
+		"WIND" : {
+			"Wind Cutter" : 1
+		},
+		"EARTH" : {
+		},
+		"ICE" : {
+		},
+		"LIGHTNING" : {
+			"Shockblade" : 1
+		},
+		"LIGHT" : {
+			"Archsword" : 2
+		},
+		"DARK" : {
+			"Masamune" : 5
+		}
+	},
+	"dagger" : {
+		"ALL" : {
+			"Dagger" : 1,
+			"Training Dagger" : 1,
+			"Assassin Dagger" : 2,
+			"Parrying Dagger" : 1,
+			"Hunting Dagger" : 1,
+			"Butterfly Knife" : 1
+		},
+		"FIRE" : {
+		},
+		"WATER" : {
+		},
+		"WIND" : {
+		},
+		"EARTH" : {
+		},
+		"ICE" : {
+			"Frostbite" : 2
+		},
+		"LIGHTNING" : {
+			"Fang" : 1
+		},
+		"LIGHT" : {
+		},
+		"DARK" : {
+			"Terminus" : 4
+		}
+	},
+	"magic_staff" : {
+		"ALL" : {
+			"Training Staff" : 1,
+			"Staff" : 1
+		},
+		"FIRE" : {
+		},
+		"WATER" : {
+		},
+		"WIND" : {
+		},
+		"EARTH" : {
+		},
+		"ICE" : {
+		},
+		"LIGHTNING" : {
+		},
+		"LIGHT" : {
+		},
+		"DARK" : {
+		}
+	},
+	"spell_sword" : {
+		"ALL" : {
+			"Chainsword" : 1,
+			"Cannonsword" : 1
+		},
+		"FIRE" : {
+		},
+		"WATER" : {
+		},
+		"WIND" : {
+		},
+		"EARTH" : {
+		},
+		"ICE" : {
+		},
+		"LIGHTNING" : {
+			"Asterisk" : 3
+		},
+		"LIGHT" : {
+		},
+		"DARK" : {
+			"Cursesword" : 1
+		}
+	},
+	"stat_prefixes" : {
+		"Healthy" : {
+			"attributes" : {
+				"stamina" : 1
+			},
+			"stats" : {
+				"max_hp" : 1
+			}
+		},
+		"Bolstering" : {
+			"attributes" : {
+				"stamina" : 0.5,
+				"intelligence" : 0.5
+			},
+			"stats" : {
+				"max_hp" : 1,
+				"magic_power" : 1
+			}
+		},
+		"Fervorous" : {
+			"attributes" : {
+				"stamina" : 0.5,
+				"strength" : 0.5
+			},
+			"stats" : {
+				"max_hp" : 1,
+				"attack_power" : 1
+			}
+		},
+		"Vigorous" : {
+			"attributes" : {
+				"stamina" : 0.5,
+				"dexterity" : 0.5
+			},
+			"stats" : {
+				"max_hp" : 1,
+				"hit" : 1
+			}
+		},
+		"Tenacious" : {
+			"attributes" : {
+				"stamina" : 0.5,
+				"luck" : 0.5
+			},
+			"stats" : {
+				"max_hp" : 1,
+				"critical" : 1,
+				"critical_damage" : 1
+			}
+		},
+		"Frail" : {
+			"attributes" : {
+				"stamina" : -0.5
+			},
+			"stats" : {
+				"defence" : -1
+			}
+		},
+		"Brittle" : {
+			"attributes" : {
+				"stamina" : -0.5,
+				"wisdom" : -1
+			},
+			"stats" : {
+			}
+		},
+		"Vulnerable" : {
+			"attributes" : {
+				"stamina" : -0.5
+			},
+			"stats" : {
+				"wisdom" : -0.5,
+				"defence" : -0.5
+			}
+		},
+		"Energizing" : {
+			"attributes" : {
+				"intelligence" : 1
+			},
+			"stats" : {
+				"magic_power" : 1
+			}
+		},
+		"Spirit" : {
+			"attributes" : {
+				"intelligence" : 0.5,
+				"wisdom" : 0.5
+			},
+			"stats" : {
+				"magic_power" : 0.5,
+				"faith" : 0.5
+			}
+		},
+		"Empowering" : {
+			"attributes" : {
+				"intelligence" : 0.5,
+				"stamina" : 0.5
+			},
+			"stats" : {
+				"magic_power" : 0.5,
+				"max_hp" : 0.5
+			}
+		},
+		"Forceful" : {
+			"attributes" : {
+				"intelligence" : 0.5,
+				"strength" : 0.5
+			},
+			"stats" : {
+				"magic_power" : 0.5,
+				"attack_power" : 0.5
+			}
+		},
+		"Zealous" : {
+			"attributes" : {
+				"intelligence" : 0.5,
+				"dexterity" : 0.5
+			},
+			"stats" : {
+				"hit" : 0.5,
+				"critical_damage" : 0.5
+			}
+		},
+		"Enchanting" : {
+			"attributes" : {
+				"intelligence" : 0.5,
+				"luck" : 0.5
+			},
+			"stats" : {
+				"hit" : 0.5,
+				"critical" : 0.5
+			}
+		},
+		"Exhausted" : {
+			"attributes" : {
+				"intelligence" : -0.5
+			},
+			"stats" : {
+				"magic_power" : -0.5,
+				"max_mp" : -0.5
+			}
+		},
+		"Weakened" : {
+			"attributes" : {
+				"intelligence" : -0.5
+			},
+			"stats" : {
+				"magic_power" : -1,
+				"max_mp" : 0.5
+			}
+		},
+		"Enfeebled" : {
+			"attributes" : {
+				"intelligence" : -0.5
+			},
+			"stats" : {
+				"max_mp" : -1
+			}
+		},
+		"Powerful" : {
+			"attributes" : {
+				"strength" : 1
+			},
+			"stats" : {
+				"attack_power" : 1
+			}
+		},
+		"Mighty" : {
+			"attributes" : {
+				"strength" : 0.5,
+				"luck" : 0.5
+			},
+			"stats" : {
+				"critical_damage" : 0.5,
+				"attack_power" : 0.5
+			}
+		},
+		"Strengthened" : {
+			"attributes" : {
+				"strength" : 0.5,
+				"wisdom" : 0.5
+			},
+			"stats" : {
+				"defense" : 0.5,
+				"max_mp" : 0.5
+			}
+		},
+		"Reinforced" : {
+			"attributes" : {
+				"strength" : 0.5,
+				"dexterity" : 0.5
+			},
+			"stats" : {
+				"hit" : 0.5,
+				"max_hp" : 0.5
+			}
+		},
+		"Fragile" : {
+			"attributes" : {
+				"strength" : -0.5
+			},
+			"stats" : {
+				"defense" : -0.5
+			}
+		},
+		"Effete" : {
+			"attributes" : {
+				"strength" : -0.5
+			},
+			"stats" : {
+				"attack_power" : -1
+			}
+		},
+		"Makeshift" : {
+			"attributes" : {
+				"strength" : -1
+			},
+			"stats" : {
+				"attack_power" : -0.5,
+				"magic_power" : -0.5
+			}
+		},
+		"Broken" : {
+			"attributes" : {
+				"dexterity" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Cracked" : {
+			"attributes" : {
+				"dexterity" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Faithful" : {
+			"attributes" : {
+				"wisdom" : 1
+			},
+			"stats" : {
+			}
+		},
+		"Cursed" : {
+			"attributes" : {
+				"wisdom" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Blighted" : {
+			"attributes" : {
+				"wisdom" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Accurate" : {
+			"attributes" : {
+				"dexterity" : 1
+			},
+			"stats" : {
+			}
+		},
+		"Exact" : {
+			"attributes" : {
+				"dexterity" : 1.5
+			},
+			"stats" : {
+			}
+		},
+		"Skillful" : {
+			"attributes" : {
+				"intelligence" : 1.5
+			},
+			"stats" : {
+			}
+		},
+		"True" : {
+			"attributes" : {
+				"wisdom" : 1,
+				"luck" : 0.5
+			},
+			"stats" : {
+			}
+		},
+		"Imprecise" : {
+			"attributes" : {
+				"dexterity" : -0.5,
+				"luck" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Unwieldy" : {
+			"attributes" : {
+				"dexterity" : -1
+			},
+			"stats" : {
+			}
+		},
+		"Faulty" : {
+			"attributes" : {
+				"strength" : -0.5,
+				"luck" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Defective" : {
+			"attributes" : {
+				"wisdom" : -0.5,
+				"luck" : -0.5,
+				"stamina" : -0.5,
+				"strength" : -0.5,
+				"dexterity" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Buster" : {
+			"attributes" : {
+				"strength" : 1.5,
+				"stamina" : 0.5,
+				"dexterity" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Impulse" : {
+			"attributes" : {
+				"intelligence" : 1.5,
+				"stamina" : 0.5,
+				"dexterity" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Stable" : {
+			"attributes" : {
+				"stamina" : 1,
+				"wisdom" : 1,
+				"strength" : -0.5,
+				"intelligence" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Awkward" : {
+			"attributes" : {
+				"dexterity" : -1
+			},
+			"stats" : {
+			}
+		},
+		"Bulky" : {
+			"attributes" : {
+				"dexterity" : -1,
+				"stamina" : 0.5,
+				"wisdom" : 0.5
+			},
+			"stats" : {
+			}
+		},
+		"Cumbersome" : {
+			"attributes" : {
+				"luck" : -1
+			},
+			"stats" : {
+			}
+		},
+		"Lightweight" : {
+			"attributes" : {
+				"dexterity" : 1
+			},
+			"stats" : {
+			}
+		},
+		"Deceptive" : {
+			"attributes" : {
+				"dexterity" : 0.5,
+				"luck" : 0.5
+			},
+			"stats" : {
+			}
+		},
+		"False" : {
+			"attributes" : {
+				"dexterity" : 0.5,
+				"wisdom" : 0.5
+			},
+			"stats" : {
+			}
+		},
+		"Featherweight" : {
+			"attributes" : {
+				"dexterity" : 2,
+				"strength" : -0.5,
+				"intelligence" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Marked" : {
+			"attributes" : {
+				"stamina" : 2,
+				"strength" : -0.5,
+				"intelligence" : -0.5
+			},
+			"stats" : {
+			}
+		},
+		"Heavy" : {
+			"attributes" : {
+				"stamina" : 1,
+				"wisdom" : 1,
+				"strength" : 1,
+				"dexterity" : -2
+			},
+			"stats" : {
+			}
+		},
+		"Hefty" : {
+			"attributes" : {
+				"stamina" : 1
+			},
+			"stats" : {
+			}
+		}
+	},
+	"stats" : [
+		"max_hp",
+		"max_mp",
+		"attack_power",
+		"magic_power",
+		"defence",
+		"faith",
+		"critical",
+		"critical_damage",
+		"evasion",
+		"hit"
+	],
+	"attributes" : [
+		"stamina",
+		"strength",
+		"dexterity",
+		"intelligence",
+		"wisdom",
+		"luck"
+	],
+	"elementals" : [
+		"FIRE",
+		"WATER",
+		"WIND",
+		"EARTH",
+		"ICE",
+		"LIGHTNING",
+		"LIGHT",
+		"DARK"
+	],
+	"status_effects" : [
+		"paralysis",
+		"blind",
+		"silence",
+		"sleep",
+		"poison",
+		"burn",
+		"confusion",
+		"instant_death",
+		"petrify",
+		"fear",
+		"stun"
+	],
+	"elemental_names" : {
+		"FIRE" : {
+			"prefix" : [
+				"Flamming",
+				"Burning",
+				"Blazing",
+				"Inferno",
+				"Charring",
+				"Pyre",
+				"Flaring"
+			],
+			"suffix" : [
+				"of Conflagration",
+				"of Combustion",
+				"of Embers",
+				"of Flames"
+			]
+		},
+		"WATER" : {
+			"prefix" : [
+				"Aqua",
+				"Flowing",
+				"Brine",
+				"Wave",
+				"Rainfall",
+				"Storm"
+			],
+			"suffix" : [
+				"of Water",
+				"of Tides",
+				"of Seas"
+			]
+		},
+		"WIND" : {
+			"prefix" : [
+				"Cyclone",
+				"Gale",
+				"Flurry",
+				"Fluttering",
+				"Wind",
+				"Haze",
+				"Cloud"
+			],
+			"suffix" : [
+				"of Gusts",
+				"of Mist",
+				"of Zephyr",
+				"of Clouds"
+			]
+		},
+		"EARTH" : {
+			"prefix" : [
+				"Earthen",
+				"Scarred",
+				"Terra",
+				"Crystal",
+				"Crag",
+				"Gemstone",
+				"Rock"
+			],
+			"suffix" : [
+				"of Earth",
+				"of Stone",
+				"of Mountains"
+			]
+		},
+		"ICE" : {
+			"prefix" : [
+				"Frost",
+				"Icy",
+				"Hailstone",
+				"Permafrost",
+				"Chilled",
+				"Icebound",
+				"Snow"
+			],
+			"suffix" : [
+				"of Winter",
+				"of Cold",
+				"of Snow",
+				"of Blizzard"
+			]
+		},
+		"LIGHTNING" : {
+			"prefix" : [
+				"Lightning",
+				"Shock",
+				"Arc",
+				"Electric"
+			],
+			"suffix" : [
+				"of Thunder",
+				"of Storms"
+			]
+		},
+		"LIGHT" : {
+			"prefix" : [
+				"Divine",
+				"Holy",
+				"Angelic",
+				"Radiant"
+			],
+			"suffix" : [
+				"of the Divine",
+				"of Light",
+				"of Radiance",
+				"of Hope"
+			]
+		},
+		"DARK" : {
+			"prefix" : [
+				"Umbral",
+				"Dark",
+				"Twilight",
+				"Sunless",
+				"Grim",
+				"Dusk",
+				"Elder",
+				"Bane"
+			],
+			"suffix" : [
+				"of Void",
+				"of Shadow",
+				"of Despair"
+			]
+		}
+	},
+
+	"tier_names" : {
+	}
+}

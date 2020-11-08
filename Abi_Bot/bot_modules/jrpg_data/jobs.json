@@ -1,0 +1,136 @@
+{
+	"knight" : {
+		"base_ac" : 60,
+		"base_stats" : {
+			"stamina" : 24,
+			"strength" : 14,
+			"dexterity" : 10,
+			"intelligence" : 2,
+			"wisdom" : 8,
+			"luck" : 6
+		},
+		"stat_scaling" : {
+			"stamina" : 3,
+			"strength" : 2,
+			"dexterity" : 1,
+			"intelligence" : 1,
+			"wisdom" : 2,
+			"luck" : 1
+		},
+		"skills" : {
+			"recovery" : 1,
+			"cleave" : 1,
+			"quick_strike" : 1
+		}
+	},
+	"white_mage" : {
+		"base_ac" : 55,
+		"base_stats" : {
+			"stamina" : 12,
+			"strength" : 2,
+			"dexterity" : 14,
+			"intelligence" : 14,
+			"wisdom" : 22,
+			"luck" : 6
+		},
+		"stat_scaling" : {
+			"stamina" : 2,
+			"strength" : 1,
+			"dexterity" : 1,
+			"intelligence" : 2,
+			"wisdom" : 3,
+			"luck" : 1
+		},
+		"skills" : {
+			"fortitude" : 1,
+			"restore" : 1,
+			"hex_flare" : 1
+		}
+	},
+	"black_mage" : {
+		"base_ac" : 55,
+		"base_stats" : {
+			"stamina" : 12,
+			"strength" : 2,
+			"dexterity" : 14,
+			"intelligence" : 24,
+			"wisdom" : 14,
+			"luck" : 6
+		},
+		"stat_scaling" : {
+			"stamina" : 1,
+			"strength" : 1,
+			"dexterity" : 2,
+			"intelligence" : 3,
+			"wisdom" : 2,
+			"luck" : 1
+		},
+		"skills" : {
+			"fortitude" : 1,
+			"hex_shock" : 1,
+			"hex_blaze" : 1
+		}
+	},
+	"rogue" : {
+		"base_ac" : 50,
+		"base_stats" : {
+			"stamina" : 14,
+			"strength" : 10,
+			"dexterity" : 24,
+			"intelligence" : 6,
+			"wisdom" : 2,
+			"luck" : 20
+		},
+		"stat_scaling" : {
+			"stamina" : 1,
+			"strength" : 2,
+			"dexterity" : 3,
+			"intelligence" : 1,
+			"wisdom" : 1,
+			"luck" : 2
+		},
+		"skills" : {
+			"dual_wield" : 1,
+			"double_strike" : 1,
+			"quick_strike" : 1
+		}
+	},
+	"admin" : {
+		"base_ac" : 50,
+		"base_stats" : {
+			"stamina" : 40,
+			"strength" : 2,
+			"dexterity" : 14,
+			"intelligence" : 24,
+			"wisdom" : 14,
+			"luck" : 6
+		},
+		"stat_scaling" : {
+			"stamina" : 3,
+			"strength" : 3,
+			"dexterity" : 3,
+			"intelligence" : 3,
+			"wisdom" : 3,
+			"luck" : 3
+		},
+		"skills" : {
+			"dual_wield" : 1,
+			"double_strike" : 1,
+			"fortitude" : 1,
+			"hex_shock" : 1,
+			"hex_blaze" : 1,
+			"restore" : 1,
+			"hex_flare" : 1,
+			"recovery" : 1,
+			"cleave" : 1,
+			"venom_strike" : 1,
+			"hex_torrent" : 1,
+			"hex_frost" : 1,
+			"hex_blast" : 1,
+			"hex_shade" : 1,
+			"hex_gale" : 1,
+			"shatter_drive" : 1,
+			"shatter_drive+" : 1
+		}
+	}
+}

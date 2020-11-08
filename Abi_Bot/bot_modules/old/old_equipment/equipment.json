@@ -1,0 +1,337 @@
+{
+	"greatsword" : {
+		"type" : "weapon",
+		"wield_type" : "two_hand",
+		"class_lock" : [
+			"knight"
+		],
+		"attributes" : [
+			"strength",
+			"stamina"
+		],
+		"primary_stat" : "attack_power",
+		"stat_base" : 6,
+		"stat_generation" : {
+			"stat_chance" : 66,
+			"stat_max" : 4,
+			"attriubte_chance" : 40,
+			"attriubte_max" : 2,
+			"elemental_chance" : 66,
+			"elemental_max" : 2,
+			"status_chance" : 20,
+			"status_max" : 10,
+			"ability_chance" : 33,
+			"ability_max" : 1
+		},
+		"secondary_stats" : [
+			"max_hp",
+			"max_mp",
+			"critical",
+			"critical_damage",
+			"defence",
+			"hit"
+		],
+		"elemental" : [
+			"FIRE",
+			"WATER",
+			"WIND",
+			"EARTH",
+			"ICE",
+			"LIGHTNING",
+			"LIGHT",
+			"DARK"
+		],
+		"status_type" : [
+			"paralysis",
+			"blind",
+			"sleep",
+			"poison",
+			"burn",
+			"confusion",
+			"instant_death",
+			"petrify",
+			"fear",
+			"stun"
+		],
+		"abilities" : {
+		},
+		"names" : [
+			"Greatsword",
+			"Broadsword"
+		]
+	},
+	"sword" : {
+		"type" : "weapon",
+		"wield_type" : "one_hand",
+		"class_lock" : [
+			"knight",
+			"rogue"
+		],
+		"attributes" : [
+			"strength",
+			"stamina",
+			"dexterity"
+		],
+		"primary_stat" : "attack_power",
+		"stat_base" : 4,
+		"stat_generation" : {
+			"stat_chance" : 33,
+			"stat_max" : 6,
+			"attriubte_chance" : 33,
+			"attriubte_max" : 3,
+			"elemental_chance" : 50,
+			"elemental_max" : 1,
+			"status_chance" : 10,
+			"status_max" : 10,
+			"ability_chance" : 33,
+			"ability_max" : 1
+		},
+		"secondary_stats" : [
+			"max_hp",
+			"max_mp",
+			"critical",
+			"critical_damage",
+			"defence",
+			"hit"
+		],
+		"elemental" : [
+			"FIRE",
+			"WATER",
+			"WIND",
+			"EARTH",
+			"ICE",
+			"LIGHTNING",
+			"LIGHT",
+			"DARK"
+		],
+		"status_type" : [
+			"paralysis",
+			"blind",
+			"silence",
+			"sleep",
+			"poison",
+			"burn",
+			"confusion",
+			"instant_death",
+			"petrify",
+			"fear",
+			"stun"
+		],
+		"abilities" : {
+		},
+		"names" : [
+			"Shortsword",
+			"Sword",
+			"Longsword"
+		]
+	},
+	"dagger" : {
+		"type" : "weapon",
+		"wield_type" : "one_hand",
+		"class_lock" : [
+			"rogue",
+			"knight",
+			"white_mage",
+			"black_mage"
+		],
+		"attributes" : [
+			"dexterity",
+			"strength",
+			"luck"
+		],
+		"primary_stat" : "attack_power",
+		"stat_base" : 2,
+		"stat_generation" : {
+			"stat_chance" : 25,
+			"stat_max" : 6,
+			"attriubte_chance" : 25,
+			"attriubte_max" : 3,
+			"elemental_chance" : 50,
+			"elemental_max" : 1,
+			"status_chance" : 10,
+			"status_max" : 10,
+			"ability_chance" : 33,
+			"ability_max" : 1
+		},
+		"secondary_stats" : [
+			"max_hp",
+			"max_mp",
+			"critical",
+			"critical_damage",
+			"evasion",
+			"hit"
+		],
+		"elemental" : [
+			"FIRE",
+			"WATER",
+			"WIND",
+			"EARTH",
+			"ICE",
+			"LIGHTNING",
+			"LIGHT",
+			"DARK"
+		],
+		"status_type" : [
+			"paralysis",
+			"blind",
+			"silence",
+			"sleep",
+			"poison",
+			"burn",
+			"confusion",
+			"instant_death",
+			"petrify",
+			"fear",
+			"stun"
+		],
+		"abilities" : {
+		},
+		"names" : [
+			"Knife",
+			"Dagger",
+			"Dirk"
+		]
+	},
+	"magic_staff" : {
+		"type" : "weapon",
+		"wield_type" : "two_hand",
+		"class_lock" : [
+			"white_mage",
+			"black_mage"
+		],
+		"attributes" : [
+			"intelligence",
+			"wisdom",
+			"stamina"
+		],
+		"primary_stat" : "faith",
+		"stat_base" : 8,
+		"stat_generation" : {
+			"stat_chance" : 66,
+			"stat_max" : 6,
+			"attriubte_chance" : 66,
+			"attriubte_max" : 3,
+			"elemental_chance" : 66,
+			"elemental_max" : 2,
+			"status_chance" : 20,
+			"status_max" : 10,
+			"ability_chance" : 83,
+			"ability_max" : 4
+		},
+		"secondary_stats" : [
+			"max_hp",
+			"max_mp",
+			"critical",
+			"critical_damage",
+			"magic_power",
+			"hit"
+		],
+		"elemental" : [
+			"FIRE",
+			"WATER",
+			"WIND",
+			"EARTH",
+			"ICE",
+			"LIGHTNING",
+			"LIGHT",
+			"DARK"
+		],
+		"status_type" : [
+			"paralysis",
+			"blind",
+			"silence",
+			"sleep",
+			"poison",
+			"burn",
+			"confusion",
+			"instant_death",
+			"petrify",
+			"fear",
+			"stun"
+		],
+		"abilities" : {
+		},
+		"names" : [
+			"Staff",
+			"Rod",
+			"Stick"
+		]
+	},
+	"spell_sword" : {
+		"type" : "weapon",
+		"wield_type" : "one_hand",
+		"class_lock" : [
+			"white_mage",
+			"black_mage"
+		],
+		"attributes" : [
+			"strength",
+			"intelligence",
+			"stamina"
+		],
+		"primary_stat" : "magic_power",
+		"stat_base" : 6,
+		"stat_generation" : {
+			"stat_chance" : 33,
+			"stat_max" : 6,
+			"attriubte_chance" : 33,
+			"attriubte_max" : 3,
+			"elemental_chance" : 66,
+			"elemental_max" : 2,
+			"status_chance" : 20,
+			"status_max" : 10,
+			"ability_chance" : 83,
+			"ability_max" : 4
+		},
+		"secondary_stats" : [
+			"max_hp",
+			"max_mp",
+			"critical",
+			"critical_damage",
+			"attack_power",
+			"hit"
+		],
+		"elemental" : [
+			"FIRE",
+			"WATER",
+			"WIND",
+			"EARTH",
+			"ICE",
+			"LIGHTNING",
+			"LIGHT",
+			"DARK"
+		],
+		"status_type" : [
+			"paralysis",
+			"blind",
+			"silence",
+			"sleep",
+			"poison",
+			"burn",
+			"confusion",
+			"instant_death",
+			"petrify",
+			"fear",
+			"stun"
+		],
+		"abilities" : {
+			"ALL" : {
+				"sword_drive" : 1
+			},
+			"LIGHT" : {
+				"flare_drive" : 1
+			},
+			"FIRE" : {
+				"blaze_drive" : 1
+			},
+			"LIGHTNING" : {
+				"shock_drive" : 1
+			}
+		},
+		"names" : [
+			"Spell Sword",
+			"Powered Sword",
+			"Machine Blade"
+		]
+	}
+}

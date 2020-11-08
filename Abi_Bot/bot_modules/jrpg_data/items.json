@@ -1,0 +1,48 @@
+{
+	"consumable":{
+		"health_potion":{
+			"name":"Life Flask",
+			"type":"item",
+			"use_type":"consumable",
+			"effect":"RESTORE_HP",
+			"effect_settings":{
+				"quality_modifier":["potency"],
+				"potency":100,
+				"potency_type":"FLAT"
+			}
+		},
+		"health_regen_potion":{
+			"name":"Recovery Flask",
+			"type":"item",
+			"use_type":"consumable",
+			"effect":"CAST_BUFF",
+			"effect_settings":{
+				"quality_modifier":["turns"],
+				"skill_name":"recovery",
+				"turns":5
+			}
+		},
+		"mana_potion":{
+			"name":"Arcane Flask",
+			"type":"item",
+			"use_type":"consumable",
+			"effect":"RESTORE_MP",
+			"effect_settings":{
+				"quality_modifier":["potency"],
+				"potency":50,
+				"potency_type":"FLAT"
+			}
+		},
+		"mana_regen_potion":{
+			"name":"Fortitude Flask",
+			"type":"item",
+			"use_type":"consumable",
+			"effect":"CAST_BUFF",
+			"effect_settings":{
+				"quality_modifier":["turns"],
+				"skill_name":"fortitude",
+				"turns":5
+			}
+		}
+	}
+}

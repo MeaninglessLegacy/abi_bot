@@ -1,0 +1,7 @@
+beasts
+celestial
+dragons
+floral
+demons
+mechanical
+aquatic

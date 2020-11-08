@@ -1,0 +1,174 @@
+{
+	"quality" : {
+		"0" : {
+			"modifier" : 0.80,
+			"ac_modifier" : 1.2,
+			"quality_names" : [
+				"Broken"
+			],
+			"counts" : {
+				"stat_count_weight" : 3,
+				"attribute_count_weight" : 2,
+				"status_count_weight" : 3,
+				"elemental_count_weight" : 2,
+				"ability_count_weight" : 0
+			},
+			"positive_chance" : 5,
+			"negative_chance" : 65,
+			"zero_chance" : 30
+		},
+		"1" : {
+			"modifier" : 0.90,
+			"ac_modifier" : 1.1,
+			"quality_names" : [
+				"Damaged"
+			],
+			"counts" : {
+				"stat_count_weight" : 2,
+				"attribute_count_weight" : 1,
+				"status_count_weight" : 2,
+				"elemental_count_weight" : 1,
+				"ability_count_weight" : 1
+			},
+			"positive_chance" : 10,
+			"negative_chance" : 40,
+			"zero_chance" : 50
+		},
+		"2" : {
+			"modifier" : 0.95,
+			"ac_modifier" : 1.05,
+			"quality_names" : [
+				"Worn"
+			],
+			"counts" : {
+				"stat_count_weight" : 1,
+				"attribute_count_weight" : 0,
+				"status_count_weight" : 1,
+				"elemental_count_weight" : 1,
+				"ability_count_weight" : 2
+			},
+			"positive_chance" : 20,
+			"negative_chance" : 35,
+			"zero_chance" : 45
+		},
+		"3" : {
+			"modifier" : 1.00,
+			"ac_modifier" : 1,
+			"quality_names" : [
+			],
+			"counts" : {
+				"stat_count_weight" : 1,
+				"attribute_count_weight" : 1,
+				"status_count_weight" : 1,
+				"elemental_count_weight" : 1,
+				"ability_count_weight" : 2
+			},
+			"positive_chance" : 40,
+			"negative_chance" : 20,
+			"zero_chance" : 40
+		},
+		"4" : {
+			"modifier" : 1.05,
+			"ac_modifier" : 0.95,
+			"quality_names" : [
+				"Exceptional"
+			],
+			"counts" : {
+				"stat_count_weight" : 2,
+				"attribute_count_weight" : 1,
+				"status_count_weight" : 2,
+				"elemental_count_weight" : 2,
+				"ability_count_weight" : 3
+			},
+			"positive_chance" : 50,
+			"negative_chance" : 15,
+			"zero_chance" : 35
+		},
+		"5" : {
+			"modifier" : 1.10,
+			"ac_modifier" : 0.9,
+			"quality_names" : [
+				"Flawless"
+			],
+			"counts" : {
+				"stat_count_weight" : 3,
+				"attribute_count_weight" : 2,
+				"status_count_weight" : 3,
+				"elemental_count_weight" : 2,
+				"ability_count_weight" : 4
+			},
+			"positive_chance" : 60,
+			"negative_chance" : 10,
+			"zero_chance" : 30
+		},
+		"6" : {
+			"modifier" : 1.20,
+			"ac_modifier" : 0.8,
+			"quality_names" : [
+				"Fabled"
+			],
+			"counts" : {
+				"stat_count_weight" : 3,
+				"attribute_count_weight" : 2,
+				"status_count_weight" : 3,
+				"elemental_count_weight" : 3,
+				"ability_count_weight" : 5
+			},
+			"positive_chance" : 70,
+			"negative_chance" : 5,
+			"zero_chance" : 15
+		}
+	},
+	"quality_chances" : [
+		["0", 50],
+		["1", 150],
+		["2", 175],
+		["3", 250],
+		["4", 175],
+		["5", 150],
+		["6", 50]
+	],
+	"stat_weights" : {
+		"max_hp" : 8,
+		"max_mp" : 8,
+		"attack_power" : 2,
+		"magic_power" : 2,
+		"defence" : 2,
+		"faith" : 2,
+		"critical" : 3,
+		"critical_damage" : 8,
+		"evasion" : 3,
+		"hit" : 3
+	},
+	"attribute_weights" : {
+		"stamina" : 1,
+		"strength" : 1,
+		"dexterity" : 1,
+		"intelligence" : 1,
+		"wisdom" : 1, 
+		"luck" : 1
+	},
+	"elemental_weights" : {
+		"FIRE" : 5,
+		"WATER" : 5,
+		"WIND" : 5,
+		"EARTH" : 5,
+		"ICE" : 5,
+		"LIGHTNING" : 5,
+		"LIGHT" : 5,
+		"DARK" : 5
+	},
+	"status_weights" : {
+		"paralysis" : 5,
+		"blind" : 5,
+		"silence" : 5,
+		"sleep" : 5,
+		"poison" : 5,
+		"burn" : 5,
+		"confusion" : 5,
+		"instant_death" : 5,
+		"petrify" : 5,
+		"fear" : 5,
+		"stun" : 5
+	}
+}

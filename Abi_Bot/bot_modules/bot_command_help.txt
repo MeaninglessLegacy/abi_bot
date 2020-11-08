@@ -1,0 +1,271 @@
+JRPG BOT COMMAND HELP LIST
+LAST UPDATED 10/21/2020
+-------------------------------------------------
+
+{
+BASIC CHARACTER COMMANDS :
+}
+"create_character",
+desc : Used to creating new characters, only availible outside of parties.
+example : create_character.Joe.knight
+notes:
+availible classes, knight, rogue, white_mage, black_mage
+
+"check_stats",
+desc : Used to check stats of a player character.
+example : check_stats. @HamsterDam
+notes:
+Only works with @command in discord, uses user id
+
+"check_skills",
+desc : Used to check skills of a player character.
+example : check_skills. @HamsterDam
+notes:
+Only works with @command in discord, uses user id
+
+"status",
+desc : Used to quickly check health and mana of a player character.
+example : status. @HamsterDam
+notes:
+Only works with @command in discord, uses user id
+
+"skill_info",
+desc : Used to check the information on a skill.
+example : skill_info.hex_blaze
+notes:
+second input is skill name
+skill must exist
+
+
+
+
+
+{
+COMBAT COMMANDS :
+}
+"ATTACK",
+desc : Combat command, attacks a target with a basic hit.
+example : ATTACK.Tracker Wyrm
+notes:
+second input is target's character name
+
+"DEFEND",
+desc : Combat command, defend own character from damage.
+example : DEFEND.self
+notes:
+none
+
+"CAST",
+desc : Combat command, casts a skill.
+example : CAST.cleave.Tracker Wyrm
+notes:
+second input is skill name
+third input is target character's name
+
+"!ui",
+desc : creates an interactive battle ui.
+example : !ui
+notes:
+only works for the current users turn
+
+
+
+
+
+{
+INVENTORY COMMANDS :
+}
+"inventory",
+desc : Base command, sub commands follow this one.
+example : inventory.list.1
+notes:
+none
+
+"list",
+desc : Sub command of inventory, lists inventory by page, 20 results per inventory page.
+example : inventory.list.1
+notes:
+third input is page number
+
+"inspect",
+desc : Sub command of inventory, inspects item in personal inventory.
+example : inventory.inspect.116172
+notes:
+third input is item id of item in inventory
+
+"user",
+desc : Sub command of inventory, lists another inventory.
+example : inventory.inspect. @Hamsterdam.1
+notes:
+fourth input is page number
+
+"equip",
+desc : Sub command of inventory, equips an item.
+example : inventory.equip.117123.left_hand
+notes:
+fourth input is slot that item is equipped to
+equippable slots can be found under check_status command under equipment
+there are other restrictions on what can be equipped, inspects items for more information
+
+"unequip",
+desc : Sub command of inventory, unequips an item.
+example : inventory.unequip.982712
+notes:
+NOT YET IMPLEMENTED
+
+
+
+
+
+{
+PARTY COMMANDS :
+}
+"plist",
+desc : Party command, lists all members of a party.
+example : plist.Tina's Tea Party
+notes:
+second input is the name of the party
+
+"pcreate",
+desc : Party command, creates a party with a name.
+example : pcreate.Mages Party
+notes:
+cannot create a party with a name that already exists
+
+"pinvite",
+desc : Party command, invites another player to your party.
+example : pinvite. @Beta Weaboo
+notes:
+must be party leader to invite to party
+
+"pjoin",
+desc : Party command, joins a party with an invite.
+example : pjoin.Tina's Tea Party
+notes:
+must be invited to party,cannot be in a party
+
+"pleave",
+desc : Party command, leaves target party.
+example : pleave.Tina's Tea Party
+notes:
+second input is party name
+
+"pkick",
+desc : Party command, kicks a player form party.
+example : pkick.@Hamsterdam
+notes:
+must be party leader
+
+
+
+
+
+{
+WORLD/TRAVEL COMMANDS :
+}
+"location",
+desc : Gives the current location of own character or target character
+example : location. @Beta Weaboo
+notes:
+none
+
+"travel",
+desc : Travels to a given location
+example : travel.25.150
+notes:
+must be in a party and is the party leader
+second input is x-cordinate
+third input is y-cordinate
+
+
+
+
+
+{
+DUEL COMMANDS :
+}
+"call_duel",
+desc : Calls a duel with another party.
+example : call_duel.Mages Party
+notes:
+must be party leader
+
+"cancel_duel",
+desc : Revokes a duel request.
+example : cancel_duel.Mages Party
+notes:
+must be party leader
+duel request must exist
+
+"accept_duel",
+desc : Accepts a request for a duel.
+example : accept_duel.Mages Party
+notes:
+must be party leader
+duel request must exist
+
+"reject_duel",
+desc : Rejects a request for a duel.
+example : reject_duel.Mages Party
+notes:
+must be party leader
+duel request must exist
+
+
+
+
+
+{
+TOWN COMMANDS:
+}
+"trader",
+desc : Base command for traders, sub commands follow this.
+example : trader.list.1
+notes:
+none
+
+"trader","list",
+desc : Sub command of trader, lists items in trader's inventory by page, 20 results per page.
+example : trader.list.1
+notes:
+third input is page number
+
+"trader","inspect",
+desc : Sub command of trader, inspects an item in trader inventory.
+example : trader.inspect.177824
+notes:
+third input is item id
+
+"trader","buy",
+desc : Sub command of trader, buys an item in trader inventory.
+example : trader.buy.177824
+notes:
+must have enough money
+third input is item id
+
+"trader","sell",
+desc : Sub command of trader, sells an item to trader.
+example : trader.sell.177824
+notes:
+must have item in own inventory
+third input is item id
+
+"apothecary",
+desc : Base command for apothecaries, sub commands follow this.
+example : apothecary.list.1
+notes:
+none
+
+"apothecary","list",
+desc : Sub command of apothecary, lists items in apothecary's inventory by page, 20 results per page.
+example : apothecary.list.1
+notes:
+third input is page number
+
+"apothecary","buy",
+desc : Sub command of apothecary, buy's items from apothecaries inventory.
+example : apothecary.buy.Life Flask.10
+notes:
+NOT YET IMPLEMENTED
+third input is item name
+fourth input is quantity

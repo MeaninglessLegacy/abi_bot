@@ -1,0 +1,141 @@
+{
+	"Coevorden Exclusion Zone" : {
+		"zone_name" : "Coevorden Exclusion Zone",
+		"description":"The remains of Coevorden, now the Coevorden Exclusion Zone, remain a testement to what civilization once was.",
+		"zone_priority" : 2,
+		"travel_methods" : [
+			"LAND",
+			"AIR"
+		],
+		"border_points" : [
+			{
+				"x" : 22,
+				"y" : 120
+			},
+			{
+				"x" : 50,
+				"y" : 120
+			},
+			{
+				"x" : 50,
+				"y" : 50
+			},
+			{
+				"x" : 60,
+				"y" : 50
+			},
+			{
+				"x" : 70,
+				"y" : 75
+			},
+			{
+				"x" : 120,
+				"y" : 75
+			},
+			{
+				"x" : 75,
+				"y" : 100
+			},
+			{
+				"x" : 75,
+				"y" : 150
+			},
+			{
+				"x" : 40,
+				"y" : 170
+			}
+		],
+		"encounters" :{
+			"mob_groups" :{
+				"Tracker_Wyrm_A" : {
+					"chance" : 1
+				},
+				"Tracker_Wyrm_B" : {
+					"chance" : 80
+				}
+			}
+		}
+	},
+	"New Coevorden Outskirts" : {
+		"zone_name" : "New Coevorden Outskirts",
+		"description":"In recent years the New Coevorden Outskirts has seen rapid expansion as major pushes were made to reclaim parts of Old Coevorden. The city of New Coevorden can be found at [25,105].",
+		"zone_priority" : 2,
+		"travel_methods" : [
+			"LAND",
+			"AIR"
+		],
+		"border_points" : [
+			{
+				"x" : 20,
+				"y" : 100
+			},
+			{
+				"x" : 49,
+				"y" : 100
+			},
+			{
+				"x" : 49,
+				"y" : 119
+			},
+			{
+				"x" : 22,
+				"y" : 119
+			}
+		],
+		"encounters" :{
+			"mob_groups" :{
+			}
+		}
+	},
+	"Ocean" : {
+		"zone_name" : "The Ocean",
+		"description":"The grandiose ocean stands before you, it is the blue vastness that reflects the sky.",
+		"zone_priority" : 2,
+		"travel_methods" : [
+			"WATER",
+			"AIR"
+		],
+		"border_points" : [
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			{
+				"x" : 28,
+				"y" : 0
+			},
+			{
+				"x" : 45,
+				"y" : 25
+			},
+			{
+				"x" : 48,
+				"y" : 48
+			},
+			{
+				"x" : 48,
+				"y" : 98
+			},
+			{
+				"x" : 18,
+				"y" : 98
+			},
+			{
+				"x" : 20,
+				"y" : 119
+			},
+			{
+				"x" : 38,
+				"y" : 169
+			},
+			{
+				"x" : 0,
+				"y" : 170
+			}
+		],
+		"encounters" :{
+			"mob_groups" :{
+			}
+		}
+	}
+}
