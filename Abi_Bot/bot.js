@@ -16,6 +16,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const Canvas = require('canvas');
+require('dotenv').config();
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +36,7 @@ const bot_commands = {
 
 /*Bot's Token*/
 
-var token = 'MzQxNDMyODk2NDM2OTYxMjgx.DGDZfw.riCkMA8eNeXYq8HIztx-YYVGGGU';
+var token = process.env.TOKEN;
 
 /*Settings*/
 
