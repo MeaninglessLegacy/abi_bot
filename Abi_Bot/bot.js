@@ -26,7 +26,7 @@ require('dotenv').config();
 
 /*Command Prefix*/
 
-const cmdPrefix = '[abi';
+const cmdPrefix = '/';
 
 /*Commands*/
 
@@ -420,8 +420,9 @@ client.on('message', message=> {
 		//add new userdata if it is a new user
 		if (user_data.hasOwnProperty(u_id)) {
 			//jprg module functions
-			var jrpg_bot_message = jrpg_module.jrpg_main(message.content,message.author.id,user_data)
-			var jrpg_bot_combat_message = jrpg_module.jrpg_combat(message.content,message.author.id,user_data)
+			var msg_content = message.content
+			var jrpg_bot_message = jrpg_module.jrpg_main(msg_content,message.author.id,user_data)
+			var jrpg_bot_combat_message = jrpg_module.jrpg_combat(msg_content,message.author.id,user_data)
 			//send bot message
 			if (jrpg_bot_message != "NILL"){
 				message.channel.send(jrpg_bot_message);
@@ -444,7 +445,8 @@ client.on('message', async message=> {
 		var u_id = message.author.id;
 		if(experimental_features == true){
 			//run ui commands
-			var jrpg_bot_ui_run = await jrpg_module.jrpg_ui_main(message.content,message.author.id,client,user_data)
+			var msg_content = message.content
+			var jrpg_bot_ui_run = await jrpg_module.jrpg_ui_main(msg_content,message.author.id,client,user_data)
 			//experimental combat features
 			if(jrpg_bot_ui_run != null){
 				if(typeof jrpg_bot_ui_run === 'string'){
