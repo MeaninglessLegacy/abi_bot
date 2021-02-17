@@ -12,62 +12,58 @@
 //REQURIED LIBARIES//////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*Add discord.js*/
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const Canvas = require('canvas');
 require('dotenv').config();
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //SETTINGS///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*Command Prefix*/
 
-const cmdPrefix = '/';
+//the bot's token for login
+var token = process.env.TOKEN;
 
-/*Commands*/
+//settings for bot commands unrealted to the jrpg module
+const cmdPrefix = '/abi';
 
 const bot_commands = {
 	currency_check : 'balance',
 }
 
-/*Bot's Token*/
-
-var token = process.env.TOKEN;
-
-/*Settings*/
-
 const enable_currency = true;
 var currency_name = "Token";
 var currency_name_plural = "Tokens";
 const pluralize = true;
+
+//jrpg module settings
+//experimental features include the gui settings
+const jrpg_module = require('./bot_modules/jrpg_module.js');  
 const experimental_features = true;
 
-/*External Modules*/
-const jrpg_module = require('./bot_modules/jrpg_module.js');  
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//BOT STATS///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//BOT STATS//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*Bot's Status*/
 
+//more basic discord bot settings
 var playingGame = {name: cmdPrefix};//displays discord status
 
 var startup = 0;//makes sure we only return one id for the bot
 
 var botID = null;//we will find bot's id from the first chat message it sends
 
-/*this object is the bot object*/
+//this is the bot's object
 var bot = {
     name : 'Abi Bot',
     version : '0.1',
 	personality : 1,
 };
 
+//this is related to outdated responses the bot gives whenever the command prefix is called
 var personalities = {
 	1 : {
 		general_responses : [
@@ -111,20 +107,27 @@ var personalities = {
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //USER DATA//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//this dictionary is updated everytime the bot is started and is loaded with player objects
 var user_data = {}
 
+//these are the modules that are used to write files
 const file_system = require('fs');
 const path = require('path');
 
+//this is the file path that user data files are saved too
 const save_dir = "./user_data";
 
-//add user adds new users to user_data to be saved
 var addUser = function (userID, username) {
+	/*
+		creates a new user object inside the user data dictionary
+	
+		no i/o
+	*/
     user_data[userID] = {
 		id : userID,
 		name : username,
@@ -143,11 +146,13 @@ var addUser = function (userID, username) {
 	};
 };
 
-
-
-//save user data
 function save_user_data(id){
-	//writeable stream
+	/*
+		searches for the user in user data dictionary then saves the user data as a json file under
+		the save files directory
+
+		no i/o
+	*/
 	if(id in user_data){
 		var new_save_dir = save_dir+"/"+id+".json";
 		//create new writeable stream
@@ -161,12 +166,14 @@ function save_user_data(id){
 	};
 };
 
-
-
 function load_json() {
-	//gather output
+	/*
+		loads all of the user data files in the save directory for user data
+	
+		no i/o
+	*/
 	const files = file_system.readdirSync("./user_data");
-	//load
+	// load
 	if(files.length > 0){
 		for(var i = 0; i < files.length; i++){
 			const dir = save_dir+"/"+files[i];
@@ -196,24 +203,27 @@ function load_json() {
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //UI DATA////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+//this dictionary contains all the ui_object objects that are defined in the jrpg module
+//each player should only has one entry in this dictionary
 var ui_messages = {}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //SETTING UP THE BOT/////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//this is just discord.js way of connecting the bot to discord
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-//load data
+//load all the user data into the user data dictionary
 load_json();
 
 
@@ -222,60 +232,92 @@ load_json();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 function pickRandomFromArray(array){
+	/*
+		given an array this function returns a random element from the array
+
+		returns element of array given
+	*/
 	var pick = array[Math.floor(Math.random() * array.length)];
 	return pick
 };
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //REACTION FUNCTIONS/////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//reactions list is for a filter to tell the bot which reactions to watch out for, it will not respond to other
+//reactions if this list is used in a filter
 const reactions_list = ['❎','◀️','▶️','0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
-const time_limit = 75000;
+//this is a temporary settings to tell the bot when to close a gui
+const time_limit = 60000;
 
 //collector for reactions
 function create_Collector(message, key) {
-	//create reaction collector
-	//filter includes the id of the only person who can interact with the ui
-	const filter = (reaction, user) => (!user.bot) && (user.id === ui_messages[key].ui_owner) && (reactions_list.includes(reaction.emoji.name));
-	const collector = message.createReactionCollector(filter,{time:time_limit});
+	/*
+		create reaction collector
+		filter includes the id of the only person who can interact with the ui
+		message - the discord message object that the reaction object should be created linked to
+		key - the key of the ui object in the ui objects dictionary
+
+		no i/o
+	*/
+    const creation_time = ui_messages[key].time_stamp;
+    const filter = (reaction, user) => (user.id == ui_messages[key].ui_owner) && (reactions_list.includes(reaction.emoji.name));
+    ui_messages[key].reaction_collector =  new Discord.ReactionCollector(message, filter, {time:time_limit});
 	//collector functions
-	collector.on('collect', r_msg => {
+    ui_messages[key].reaction_collector.on('collect', r_msg => {
 		//logic goes here r_msg.emoji
-		if(r_msg,ui_messages[key] != undefined){
+        if (r_msg, ui_messages[key] != undefined){
 			//logic function
 			jrpg_module.jrpg_ui_logic(r_msg,ui_messages[key],user_data);
-		}else{
-			collector.stop()
-		};
+        };
 	});
-	collector.on('end', collected => {
+    ui_messages[key].reaction_collector.on('end', collected => {
+        /*
+            deletes a "active_ui_object" class from the dictionary that contains all active ui objects
+
+            The conditions for the deletion are that the saved time stamp in saved_creation_time is not
+            earlier in time than the current ui_object being displayed.
+
+            The reason for this is the ui message deletion is async and even when a new ui message object
+            has been created, the old async timeout will still delete the new message. In order to prevent
+            the old timeout from deleting the new message we compare the timestamps of when the timeout was
+            issused and when the ui was created.
+
+            No I/O
+         */
+        const saved_creation_time = creation_time;
 		//message.reactions.removeAll().catch(error => console.error(error));
-		delete ui_messages[key];
+        if (ui_messages[key].is_linked && saved_creation_time >= ui_messages[key].time_stamp) {
+            delete ui_messages[key]
+        }
 	});
 };
 
-//reaciton menus
-//no callback needed
 async function reaction_uis(){
+	/*
+		This function is the update function for all ui objects, it creates reaction objects for new ui objects created
+		and sets a timeout timer to delete them, this is run on a loop at the bottom of bot.js
+
+		no i/o
+	*/
 	for(var key in ui_messages){
 		const this_key = key.slice();
-		if(ui_messages[this_key].is_linked == false){
-			ui_messages[this_key].is_linked = true
+        if (ui_messages[this_key].is_linked == false) {
+            ui_messages[this_key].is_linked = true
 			//first time emojis before logic and base template for each ui
 			if(ui_messages[this_key].ui_type == "battle_ui"){
 				const new_msg =  await ui_messages[this_key].channel.send("```css\n1 : ATTACK\n2 : SKILL\n3 : DEFEND\n4 : ITEM```")
 				try{
+					create_Collector(new_msg, this_key);
+					ui_messages[this_key].message = new_msg;
 					await new_msg.react('1️⃣');
 					await new_msg.react('2️⃣');
 					await new_msg.react('3️⃣');
 					await new_msg.react('4️⃣');
-					create_Collector(new_msg, this_key);
-					ui_messages[this_key].message = new_msg;
 					new_msg.delete({ timeout: time_limit })
 				}catch(err){
 					throw err
@@ -295,11 +337,10 @@ async function reaction_uis(){
 				*/
 				//.then(msgReaction => {create_Collector(msgReaction.message, key); ui_messages[key].message = msgReaction.message})
 				//.catch(console.error)
-			};
+            };
 		};
 	};
 };
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,9 +348,14 @@ async function reaction_uis(){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//BOT COMMANDS
 function command_response(command, user){
+	/*
+		This function is for basic bot commands when the command prefix is called
+		command - the command that follows the command prefix
+		user - the user object from discord.js that sent the message with the command
+
+		return - returns a string response that the bot should print
+	*/
 	var cmd_rsp = '';
 	//grab bot personality responses
 	var possible_responses = personalities[bot['personality']];
@@ -328,7 +374,6 @@ function command_response(command, user){
 	//deal with responses
 	if (command == 'balance') {
 		responses = possible_responses['currency_check_responses'];
-		//great and efficient random from array https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
 		var picked_response = pickRandomFromArray(responses);
 		picked_response = picked_response.replace("USER", "**"+user.username+"**");
 		picked_response = picked_response.replace("AMOUNT", "**"+found_user['currency']+"**");
@@ -348,10 +393,17 @@ function command_response(command, user){
 	return cmd_rsp
 };
 
-
-
-//PRIMARY BOT RESPONSE
 function bot_response(msg_content, user) {
+	/*
+		This function runs whenever a message is sent, if the message contains a command then this function
+		will call the function for bot commands, else it will give a random generic response if only the
+		command prefix was called
+
+		msg_content - a string of what was in the message
+		user - the user object
+
+		return - a string of what the bot should respond with
+	*/
 	console.log(user);
 	//primary msg that will be returned
 	var response = '';
@@ -384,9 +436,23 @@ function bot_response(msg_content, user) {
 };
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//EVENT LISTENERS////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//EVENT LISTENER FOR TEXT
+
 client.on('message', message=> {
+	/*
+		Whenever the discord bot starts this is the event listerner that waits for messages in text channels the bot
+		is in.
+
+		When the bot starts up for the first time it sends out a message and uses that message to record the bot's own id
+		into the id variable.
+
+		The bot after the first time will then start responding to messages from users, it will process each message
+		through the jrpg module and the basic command module, if the message passes through one of the filters it will
+		generate a response based on commands called
+	*/
     //log chat
     console.log(message.author.username + ": " + message.content);
     //set up mention string
@@ -438,8 +504,14 @@ client.on('message', message=> {
 	}
 })
 
-//EVENT LISTENER FOR UI
 client.on('message', async message=> {
+	/*
+		The ui event listener is commpletely seperate from the message listener
+
+		This specifically listens for if a jrpg ui command is called and will only generate
+		a ui if the user stasifies certain conditions and the setting experimental features
+		is set to true.
+	*/
 	if(startup != 0){
 		//user id
 		var u_id = message.author.id;
@@ -460,11 +532,13 @@ client.on('message', async message=> {
 						const visual = new Discord.MessageAttachment(canvas_obj.toBuffer(), 'jrpg_ui_element.png');
 						const sent_visual = await message.channel.send(visual);
 						//timeout for visual component
-						sent_visual.delete({ timeout: 80000 })
+						sent_visual.delete({ timeout: 61000 })
 						message.delete({ timeout: 10000 })
 						//active ui request
 						jrpg_bot_ui_run[1].channel = message.channel;
-						ui_messages[jrpg_bot_ui_run[1].ui_id] = jrpg_bot_ui_run[1];
+                        ui_messages[jrpg_bot_ui_run[1].ui_id] = jrpg_bot_ui_run[1];
+                        //set the time_stamp
+                        ui_messages[jrpg_bot_ui_run[1].ui_id].time_stamp = new Date().getTime();
 					} catch (err) {
 						console.log(err)
 					}

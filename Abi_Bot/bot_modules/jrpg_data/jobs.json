@@ -19,8 +19,7 @@
 		},
 		"skills" : {
 			"recovery" : 1,
-			"cleave" : 1,
-			"quick_strike" : 1
+			"cleave" : 1
 		}
 	},
 	"white_mage" : {

@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ABI BOT JRPG MODULE VERSION 0.1 RUNS OFF OF DISCORDIE BOT, SCRIPT WRITTEN BY ERIC//////////////////////////////////////
+//ABI BOT JRPG MODULE VERSION 0.1 RUNS OFF OF DISCORD.JS BOT, SCRIPT WRITTEN BY ERIC/////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                        ___   _      _  ______  _____  _   
 //                                       / _ \ | |    (_) | ___ \|  _  || |  
@@ -9,8 +9,69 @@
 //                                      \_| |_/|_.__/ |_| \____/  \___/  \__|
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Required///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//REFERENCES/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+	SECTION HEADERS
+	1.REQUIRED
+	2.COMMANDS
+	3.GENERAL_FUNCTIONS
+	4.JRPG_SPECIFIC_FUNCTIONS
+	5.CLASS_DEFINITIONS
+		a.UI_OBJECT_DEFINITIONS
+		b.PARTY_OBJECT_DEFINTIONS
+		c.ENCOUNTER_OBJECT_DEFINITIONS
+		d.STATUS_EFFECT_DEFINITIONS
+		e.PLAYER_AND_MOB_OBJECT_DEFINITIONS
+		f.ITEMS_AND_EQUIPEMENT_OBJECT_DEFINITIONS
+	6.JRPG_SETTINGS
+		a.SETTINGS_LOADED_FROM_FILES
+	7.DISCORD_VARIABLES
+	8.JRPG_CHARACTER
+	9.ITEMS
+	10.PARTY
+	11.MOBS
+	12.BATTLE_PROGRESSION
+	13.STATUS_EFFECTS
+	14.DAMAGE_CALC
+	15.HIT_HANDLE
+		a.CASTING_LOGIC_OF_STATUS_SKILLS
+		b.CASTING_LOGIC_OF_SKILLS
+		c.CASTING_LOGIC_OF_PASSIVE_SKILLS
+		d.CASTING_SKILLS
+		e.EXECUTION_OF_SKILLS
+	16.INVENTORY
+	17.TOWNS
+		a.FUNCTIONS_FOR_ALL_TOWNS
+		b.MAIN_FUNCTION_FOR_TOWNS
+		c.USER_INTERACTION_WITH_SHOPS
+		d.DISPLAYING_SHOP_PAGES
+	18.FORMATT_INFO
+		a.DISPLAYING_ITEM_INFORMATION
+		b.DISPLAYING_SKILL_INFORMATION
+		c.DISPLAYING_LOCATION_INFORMATION
+	19.TARGETING
+	20.WORLD_MAP
+		a.DETERMINING_POSITION
+		b.MOVING_PARTIES
+	21.UI
+	F.MODULE
+*/
+
+/*
+	ANNOTATION REFERENCES:
+
+	REFA0 - a reference to the dictionary containing all user data
+	REFA1 - a reference to the dictionary containing all player parties
+*/
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//REQUIRED///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 const file_system = require('fs');
 
@@ -19,37 +80,10 @@ const v8 = require('v8');
 const Canvas = require('canvas');
 
 
-
-/*
-	SECTION HEADERS
-	1. Required
-	2. Commands
-	3. GENERAL_FUNCTIONS
-	4. JRPG_SPECIFIC_FUNCTIONS
-	5. JRPG_SETTINGS
-	6. DISCORD_VARIABLES
-	7. JRPG_CHARACTER
-	8. ITEMS
-	9. PARTY
-	10. MOBS
-	11. BATTLE_PROGRESSION
-	12. STATUS_EFFECTS
-	13. DAMAGE_CALC
-	14. HIT_HANDLE
-	15. INVENTORY
-	16. TOWNS
-	17. FORMATT_INFO
-	18. TARGETING
-	19. WORLD_MAP
-	20. UI
-	F. MODULE
-*/
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Commands///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//COMMANDS///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 const jrpg_commands = {
 	//basic character commands
@@ -118,12 +152,28 @@ const jrpg_commands = {
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //GENERAL_FUNCTIONS//////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function load_JSON(callback, file_path) {
+	/*
+		This function loads a json file and requires a callback function that assigns the parameter to whatever is loaded
+		from the file.
+
+		For example it would be use like this
+		var save_to_this_variable = load_JSON(
+			function(data){
+				save_to_this_variable = data
+			},
+			'file path to the json file'
+		);
+
+		callback - a function that assigns the parameter to a variable
+		file_path - a string of the file to load
+
+		return - no return
+	*/
 	file_system.readFile(file_path, 'utf8', function readFileCallback(err, json_data){
 		if (err){
 			console.log(err);
@@ -134,25 +184,34 @@ function load_JSON(callback, file_path) {
 	});
 };
 
-
-
 function remove_from_array(array, item){
+	/*
+		removes a single item from an array
+		array - the array to remove an item from
+		item - the value of the item in the array
+		
+		return - no return
+	*/
 	var index = array.indexOf(item);
 	if (index > -1) {
 		array.splice(index, 1);
 	}
 };
 
-
-
 function pickRandomFromArray(array){
+	/*
+		return - random element from array
+	*/
 	var pick = array[Math.floor(Math.random() * array.length)];
 	return pick
 };
 
-
-//copy returns references
 function copyArray(array){
+	/*
+		shallow copies an array and returns all the references
+
+		return - an array of references
+	*/
 	var copied_array = [];
 	for(var i = 0; i < array.length; i++){
 		copied_array[i] = array[i];
@@ -161,15 +220,33 @@ function copyArray(array){
 };
 
 
+/*
+	this functions inverts a dicts keys and values
+	for example
+	key : 1
+	->
+	1 : key
 
-//inverts a dicts keys and values
+	o - the dictionary to be inverted
+
+	return - a dictionary with the keys and values reversed
+*/
 const reverseMap = o => Object.keys(o).reduce((pre,key) =>
 	Object.assign(pre,{[o[key]]:key}),{})
 	
 	
-
-//find child - finds the nested object inside the object given a name 1st occurence
 function findChild(child, object){
+	/*
+		try not to use this, it is sus
+
+		find the first nested instance with the name given in the
+		child parameter
+
+		child - the name of the child object to find
+		object - any object that can store more elements within it
+
+		return - the child object
+	*/
 	var find = null
 	if(object instanceof Array){
 		for(var i=0; i < object.length; i++){
@@ -196,15 +273,21 @@ function findChild(child, object){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //JRPG_SPECIFIC_FUNCTIONS////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//find if the user id is in players or mobs and return the character
 function findChrById(users, id){
+	/*
+		find if the user id is in players or mobs dictionary and return the character
+		if no character is found return null value instead
+
+		users - a reference to the dictionary containing all of the discord users using the bot
+		id - the the character to find, this could be a discord user or a mob
+
+		return - returns the object with the same id as provided or null if no object is found
+	*/
 	if(id in users){
 		return users[id].jrpg_data.character;
 	}else if(id in active_mobs){
@@ -214,9 +297,12 @@ function findChrById(users, id){
 };
 
 
-
-//find battle from id
 function findBattleById(id){
+	/*
+		under the battles dictionary, this finds the battle object given the id of the battle
+
+		return - the duel or encounter object inside the battles or duel dictionary given an id
+	*/
 	var p = check_party(id);
 	if(p != false){
 		if(p.in_combat == true){
@@ -238,35 +324,31 @@ function findBattleById(id){
 };
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CLASS_DEFINITIONS//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//JRPG_SETTINGS//////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//refresh time of town stores
-const store_restock_time = 3600000;
-const store_refresh_time = 3600000*6;
-
-
-
-//parties
-var parties = {};
-var mob_parties = {};
-
-
-//mob objects
-var active_mobs = {};
-
+//UI_OBJECT_DEFINITIONS//////////////////////////////////////////////////////////////////////////////////////////////////
 
 //active ui object
 class active_ui_object {
 	constructor(id, owner, type){
+		/*
+			creates a new ui object to be stored in the main bot script
+
+			id - a string of the uesr who called the command to create this object and is also the ui object's
+				identifier
+			owner - the string id of the user who created this ui object
+			type - a string that defines what kind of ui this is, ui types are defined in the ui logic functions
+		*/
 		//identifiers
 		this.ui_id = id;
 		this.ui_owner = owner;
 		this.channel = null;
 		this.message = null;
+        this.reaction_collector = null;
+        this.time_stamp = null;
 		this.is_linked = false;
 		//type
 		this.ui_type = type;
@@ -277,20 +359,18 @@ class active_ui_object {
 	}
 };
 
-
-
-//const ui settings
-const ui_settings = {
-	resPerPage : 5,
-	t_key : 'targets',
-	s_key : 'skills',
-	s_skill : 'selected_skill',
-};
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//PARTY_OBJECT_DEFINTIONS////////////////////////////////////////////////////////////////////////////////////////////////
 
 //party object
 class party {
 	constructor(name, leader){
+		/*
+			creates a new party object
+
+			name - the name of the party object
+			leader - a string id of the one that created the party
+		*/
 		//basic settings
 		this.name = name;
 		this.party_leader = leader;
@@ -312,37 +392,35 @@ class party {
 	}
 };
 
-
-
 //party member object
 class party_member {
 	constructor(type, name, id){
+		/*
+			creates a tag for party objects that defines a character in a party
+
+			type - a string for if the character is a mob or player
+			name - a string for the name of the character
+			id - a string id of the character
+		*/
 		this.type = type;
 		this.name = name;
 		this.id = id;
 	}
 };
 
-
-
-//ongoing battles
-var battles = {
-	duels : {
-	},
-	encounter_battles : {
-	},
-};
-
-
-
-//battle timer
-var update_battles = null;
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//ENCOUNTER_OBJECT_DEFINITIONS////////////////////////////////////////////////////////////////////////////////
 
 //duel object
+//created for player versus player battles
 class duel {
 	constructor(team_1, team_2){
+		/*
+			creates a duel object that is used keep track of combat logic
+
+			team_1 - the name of one of the parties who initiated the fight
+			team_2 - the name of the other party who initated the fight
+		*/
 		//parties involved in duel
 		this.TEAM_1 = team_1;
 		this.TEAM_2 = team_2;
@@ -366,11 +444,16 @@ class duel {
 	}
 };
 
-
-
 //combat encounter object
+//created for player versus enviroment battles
 class combat_encounter {
 	constructor(player_team, mob_team){
+		/*
+			creates a encounter object that is used keep track of combat logic
+
+			player_team - the name of the party of players
+			mob_team - the name of the party of mobs
+		*/
 		//parties involved in duel
 		this.TEAM_1 = player_team;
 		this.TEAM_2 = mob_team;
@@ -388,11 +471,18 @@ class combat_encounter {
 	}
 };
 
-
-
-//participant variable object
+//this object is created for each participant in a battle and is stored in the participants dictionary of
+//the battle object
 class participant_variables_obj {
 	constructor(target_name, id, type){
+		/*
+			this object is for the participants dictionary of the duel or encounter object, it allows the script
+			to know who actually is in a fight not just the party names
+
+			target_name - the name of the player or mob
+			id - the id of the player or mob
+			type - if the character is a mob or player
+		*/
 		this.target_name = target_name;
 		this.id = id;
 		this.type = type;
@@ -401,11 +491,19 @@ class participant_variables_obj {
 	}
 };
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//STATUS_EFFECT_DEFINITIONS///////////////////////////////////////////////////////////////////////////////////
 
 //passive_tag
 class passive_tag {
 	constructor(skill, duration, source){
+		/*
+			object for all passive status effect, goes under the status effects dictionary of character objects
+
+			skill - a skill object similar to the ones defined in skills.json
+			duration - an integer for how many cycles the effect should last
+			source - the id of the character or thing this effect originated from
+		*/
 		this.skill = skill;
 		this.source = source;
 		this.duration = duration;
@@ -413,11 +511,20 @@ class passive_tag {
 	}
 };
 
-
-
 //debuff tag
 class debuff_tag {
 	constructor(name, effect_name, potency_type, potency, effect, power, duration, source){
+		/*
+			negative status effect object, goes under status effects diciontary of character objects
+
+			name - the name of the debuff
+			effect_name - the name of the effect that the debuff applies
+			potency_type - a string value of how the effect of this debuff should be calculated
+			potency - a numerical value of how strong the effect is
+			effect - a string value of the typing of the effect eg.physical, magic
+			duration - an integer value of how many cycles this effect lasts
+			source - the id of the character or thing this effect originated from
+		*/
 		this.debuff = {
 			name : name,
 			effect_name : effect_name,
@@ -432,11 +539,22 @@ class debuff_tag {
 	}
 };
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//PLAYER_AND_MOB_OBJECT_DEFINITIONS///////////////////////////////////////////////////////////////////////////
 
 //character object
+//this object is for players
 class character {
 	constructor(id, name, job, xp){
+		/*
+			creates a new character
+
+			id - the id of the character
+			name - a string of the name of the character
+			job - a string of the job of the character, will return errors if the name of the class does not
+				exist
+			xp - how much xp the character object is created with, a numerical value
+		*/
 		
 		this.id = id;
 		
@@ -529,11 +647,18 @@ class character {
 	
 };
 
-
-
 //mob object
 class mob {
 	constructor(id, mob_obj, tier){
+		/*
+			creates a new mob object
+
+			tier scaling still needs to be implemented
+
+			id - the id of the mob character
+			mob_obj - a copy of the mobs stats that is usually obtained from the mobs.json
+			tier - an integer value, mobs are scaled by tier, higher number means stronger mobs
+		*/
 		
 		this.id = id;
 		
@@ -572,14 +697,19 @@ class mob {
 	
 };
 
-
-
-//equipment object
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//ITEMS_AND_EQUIPEMENT_OBJECT_DEFINITIONS/////////////////////////////////////////////////////////////////////
 /*
 	I would advise against putting constructor tags here
 */
 class equipable {
 	constructor(type){
+		/*
+			creates a new equipment object
+			most of the stats of new equipment are done in the functions for generating equipment
+
+			type - a string value of what kind of equipment this is
+		*/
 		//primary elements
 		this.name = null;
 		this.type = type;
@@ -604,10 +734,15 @@ class equipable {
 	}
 };
 
-
-
-//item object, potions, materials, use items etc.
 class item {
+	/*
+		creates a new item object
+		item objects are potions, materials, use items etc.
+		
+		this is the base class, extened classes use the basic variables here
+
+		object - a copy of the item object, objects are listed in items.json
+	*/
 	constructor(object){
 		this.name = null;
 		this.id = null;
@@ -616,9 +751,13 @@ class item {
 	}
 };
 
-
 class consumable extends item {
 	constructor(object){
+		/*
+			creates a new consumable item
+
+			object - a copy of the item object, objects are listed in items.json
+		*/
 		//clone object
 		var item_clone = Object.assign({}, object);
 		//return name, id, type, and use type
@@ -633,52 +772,82 @@ class consumable extends item {
 	}
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//JRPG_SETTINGS//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//refresh time of town stores in miliseconds
+const store_restock_time = 3600000;
+const store_refresh_time = 3600000*6;
 
-//all jobs
+//dictionaries that contain all of the party objects, seperated in parties for mobs and parties for players
+var parties = {};
+var mob_parties = {};
+
+//dictionary contains all mob objects
+var active_mobs = {};
+
+//settings for ui objects
+const ui_settings = {
+	resPerPage : 5,
+	t_key : 'targets',
+	s_key : 'skills',
+	s_skill : 'selected_skill',
+};
+
+//dictionary containing all battles items, seperated in battles between players and mobs
+var battles = {
+	duels : {
+	},
+	encounter_battles : {
+	},
+};
+
+//battle timer
+//the idea here was to update battles using a interval function but has never been implemented yet
+var update_battles = null;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SETTINGS_LOADED_FROM_FILES//////////////////////////////////////////////////////////////////////////////////
+/*
+	this section loads all of the json files that contain the configuration for things such as spells,
+	equipment and classes
+*/
+
+//character classes which are called jobs
 var jobs = load_JSON(function(data){
 	jobs = data
 	},
 	'./bot_modules/jrpg_data/jobs.json'
 );
 
-
-
-//all skills
+//all of the skills objects
 var skills_list = load_JSON(function(data){
 	skills_list = data
 	},
 	'./bot_modules/jrpg_data/skills.json'
 );
 
-
-
-//stock_equipment
+//stock equipment objects for each type of equipment
 var stock_equipment = load_JSON(function(data){
 	stock_equipment = data
 	},
 	'./bot_modules/jrpg_data/equipment.json'
 );
 
-
-
-//equipment_generation
+//all of the settings for generating new stats onto stock equipemnt
 var equipment_generation_settings = load_JSON(function(data){
 	equipment_generation_settings = data
 	},
 	'./bot_modules/jrpg_data/equipment_generation.json'
 );
 
-
-
-//stock items
+//all stock item objects
 var stock_items = load_JSON(function(data){
 	stock_items = data
 	},
 	'./bot_modules/jrpg_data/items.json'
 );
-
-
 
 //towns list
 var towns_list = load_JSON(function(data){
@@ -687,16 +856,12 @@ var towns_list = load_JSON(function(data){
 	'towns.json'
 );
 
-
-
 //world map
 var world_map = load_JSON(function(data){
 	world_map = data
 	},
 	'./bot_modules/jrpg_data/world_tiles.json'
 );
-
-
 
 //mobs
 var all_mobs = load_JSON(function(data){
@@ -705,16 +870,12 @@ var all_mobs = load_JSON(function(data){
 	'./bot_modules/jrpg_data/mobs.json'
 );
 
-
-
 //enemy ai
 var mob_combat_ai = load_JSON(function(data){
 	mob_combat_ai = data
 	},
 	'./bot_modules/jrpg_data/mob_ai.json'
 );
-
-
 
 //enemy sets
 var mob_sets = load_JSON(function(data){
@@ -724,11 +885,9 @@ var mob_sets = load_JSON(function(data){
 );
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //DISCORD_VARIABLES//////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 //emoticon icons for discord reactions
@@ -745,8 +904,8 @@ const emoticon_list = {
 	'9' : '9️⃣'
 };
 
+//the reverse map of emoticon list
 const t_emoticon_list = reverseMap(emoticon_list);
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -754,8 +913,19 @@ const t_emoticon_list = reverseMap(emoticon_list);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 function update_stats(chr, restore_character){
+	/*
+		updates all of the stats for a character based on their level, their job and equipment 
+		adds all of the skills a character has learned to their learned skills list
+		recreates passive tags that the character is missing under status effects
+
+		if the setting restore_character is set to true, then also refills the characters hp and mp.
+		
+		chr - a character object
+		restore_character - a boolean value
+
+		return - no return
+	*/
 	//makes sure it is a character object
 	if(chr["primary_stats"] != undefined){
 		/*STEPS
@@ -895,10 +1065,14 @@ function update_stats(chr, restore_character){
 	}
 };
 
-
-
-//write stats card using text
 function formatt_stats(object){
+	/*
+		creates a message that displays all of a character's stats
+
+		object - a character object
+
+		return - a string that is formatted to show all of a character's stats
+	*/
 	var chr = object;
 	var fText = "";
 	/*
@@ -988,10 +1162,14 @@ function formatt_stats(object){
 	return fText
 };
 
-
-
-//write quick stat check
 function formatt_quick_stats(object){
+	/*
+		a condensed version of stat formatting only displays some basic information on a character
+
+		object - a character object
+
+		return - a string that shows the character's stats
+	*/
 	var chr = object;
 	var fText = "";
 	/*
@@ -1024,15 +1202,22 @@ function formatt_quick_stats(object){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ITEMS///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//generate range
 function generate_variation(value, variation){
+	/*
+		calculates a value that is within +/- % of the variation
+
+		new value = old value * range(100-variation, 100+variation)%
+
+		value - a numerical value
+		variation - a value greater than zero
+
+		return - a numerical value following the formula described above
+	*/
 	var new_value = 0;
 	new_value = value*((Math.floor(Math.random()*(variation*2))+(100-variation))/100);
 	return Math.round(new_value)
@@ -1042,6 +1227,14 @@ function generate_variation(value, variation){
 
 //pick a stat
 function pick_stat(stat_list, current_stats){
+	/*
+		picks from stat_list a stat that is not in the current_stats list
+
+		stat_list - a list of elements to pick from
+		current_stats - a list that of elements that have already been picked and cannot be picked again
+
+		return - the element that is picked form stat_list, if no stat was picked return null
+	*/
 	var return_stat = null;
 	//check if there is an availible stat
 	var available_stats = stat_list.length;
@@ -1059,11 +1252,11 @@ function pick_stat(stat_list, current_stats){
 	return return_stat
 };
 
-
-
-//generate stats
 function create_stats(obj){
 	/*
+		creates the stats for a new equipment object
+
+		obj - the equipment object
 		obj : {
 			"tier"
 			"new_item"
@@ -1075,6 +1268,8 @@ function create_stats(obj){
 			"stock_count_quality"
 			"variance"
 		}
+
+		return - no return value
 	*/
 	//generate extra stats
 	var stat_count = Math.round(obj.quality_settings.counts[obj.stock_count_quality] * obj.stock_item.stat_generation[obj.stat_count_stock]);
@@ -1105,10 +1300,17 @@ function create_stats(obj){
 	}
 }
 
-
-
 //create item
-function create_equipement(item_type, tier, id){
+function create_equipment(item_type, tier, id){
+	/*
+		creates a new equipment object
+
+		item_type - a string value of what kind of item this is, this item should exist in equipment.json and is refered to as the archetype
+		tier - a number indicating the tier of the item
+		id - the id that the item should be created with
+
+		return - a new equipment object on success and a null value on fail
+	*/
 	//this item
 	var this_item = null;
 	//make sure we have data loaded
@@ -1354,6 +1556,15 @@ function create_equipement(item_type, tier, id){
 	1.Potions
 */
 function create_item(item_type, item_name, id){
+	/*
+		creates a new item object
+
+		item_type - a string of what kind of item this is
+		item_name - a string of the name of the item
+		id - a string of what the id of the item is
+
+		return - on success a new item object, on fail a null value
+	*/
 	//item to return
 	var this_item = null;
 	//check if item type exists
@@ -1379,10 +1590,16 @@ function create_item(item_type, item_name, id){
 //PARTY//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 //formmat party text
 function formatt_party_list(p, users){
+	/*
+		creates a string with information on a specific party
+
+		p - the party object
+		users - a reference to the dictionary containing all player objects
+
+		return - a string that displays information on a specific party
+	*/
 	var plist_text = "```css\n#"+p.name+"\n\nPARTY MEMBERS ["+p.members.length+"/"+p.max_size+"]\n\n";
 	//first check if the party is in a duel
 	//if the party is in a battle and there are multiple targets with the same names
@@ -1454,10 +1671,16 @@ function formatt_party_list(p, users){
 	return plist_text
 };
 
-
-
 //combat party list
 function formatt_compact_party_list(p, users){
+	/*
+		creates a string that displays compacted information on a party specifically for combat messages
+
+		p - a party object
+		users - a reference to the dictionary containing all player objects
+
+		reutrn - a string with information on a party
+	*/
 	var plist_text = "```css\nPARTY NAME : #"+p.name+"\n\n";
 	var this_duel = null;
 	try {
@@ -1527,10 +1750,15 @@ function formatt_compact_party_list(p, users){
 	return plist_text
 };
 
-
-
 //checks if the user is in a party returns the party if true or false
 function check_party(user){
+	/*
+		checks if a user is in a party, works with mob objects as well
+
+		user - the id of the user
+
+		return - a boolean value for if the user is in a party or not
+	*/
 	var in_party = false
 	//check if any parties have been createDocumentFragment
 	//parties is a dictionary object and doesn't have a length attribute
@@ -1559,10 +1787,17 @@ function check_party(user){
 	return in_party
 };
 
-
-
 //remove from party
 function remove_from_party(party, target){
+	/*
+		removes a party member from a party by removing their party member object from the party
+		party members dictionary
+
+		party - the party object
+		target - the id of the target to remove from the party
+
+		return - no return value
+	*/
 	var pmembers = party.members;
 	for(var i = 0; i < pmembers.length; i++){
 		if(pmembers[i].id == target){
@@ -1571,10 +1806,16 @@ function remove_from_party(party, target){
 	}
 };
 
-
-
 //check if user has a character
 function check_character(users, user){
+	/*
+		checks if a player has a character object or not
+
+		users - a reference to the dictionary of player objects
+		user - the id of the user to check
+
+		return - a boolean value if the user has a character or not
+	*/
 	if(users[user]['jrpg_data']['character'] != null){
 		if(users[user]['jrpg_data']['character'].hasOwnProperty('primary_stats')){
 			return true
@@ -1589,9 +1830,14 @@ function check_character(users, user){
 //MOBS///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 function update_stats_mob(mob){
+	/*
+		refreshes all the stats for a mob object
+
+		mob - the mob object
+	
+		return - no return value
+	*/
 	//makes sure it is a character object
 	if(mob["primary_stats"] != undefined){
 
@@ -1618,10 +1864,18 @@ function update_stats_mob(mob){
 	};
 };
 
-
-
 //mob ai functions
 function do_mob_turn(mob, battle, users){
+	/*
+		the logic that makes a mob execute it's turn given the mob's ai settings
+
+		mob - the mob object
+		battle - the battle object the mob is participating in
+		users - a reference to the dictionary containing all user data
+
+		return - returns a string value of all events on the mob's turn, this should be printed out
+			as it is the same as when a player makes an action on a player turn.
+	*/
 	var return_text = "";
 	/*
 		1.check if mob has ai else skip turn
@@ -1762,15 +2016,21 @@ function do_mob_turn(mob, battle, users){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //BATTLE_PROGRESSION/////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-//function cast all status boosting skills and all debuffing skills
 function cast_status(duel, users, user){
+	/*
+		cast all status boosting skills and all debuffing skills
+		this should be executed once each turn for each character
+
+		duel - a battle object either duel or encounter
+		users - REFA0
+		user - object of the player character or mob
+
+		return - a string value of the result of casting status effects
+	*/
 	//return text
 	var return_text = "";
 	//first we need to find the passive skills of the user
@@ -1797,10 +2057,17 @@ function cast_status(duel, users, user){
 	return return_text
 };
 
-
-
 //win conditions return winner or null
 function win_condition(users, battle, condition){
+	/*
+		returns the name of a team that has won or returns null if no team has won yet
+
+		users - REFA0
+		battle - a battle object
+		condition - a string value of which condition to check victory under
+
+		return - null for no team victory and a string value for a team with a victory
+	*/
 	//gather teams
 	var teams = [];
 	var victory_team = null;
@@ -1856,10 +2123,17 @@ function win_condition(users, battle, condition){
 	return victory_team
 };
 
-
-
 //message at the start of each turn
 function formatt_turn_message(all_parties, turn, users){
+	/*
+		creates a string message that is to be displayed at the start of each character's turn in combat
+
+		all_parties - REFA1
+		turn - a number value representing how many time units have passed in a battle
+		users - REFA0
+
+		return - a string value that describes the battle at this frame in time
+	*/
 	var message = "```css\n"+
 	"➧ {BATTLE STATUS} ["+turn+"]\n```"
 	//for each party
@@ -1872,10 +2146,15 @@ function formatt_turn_message(all_parties, turn, users){
 	return message
 };
 
-
-
-//your turn message and checking status of character
 function do_turn(battle, users){
+	/*
+		executes the logic for the turn of a character
+
+		battle - a battle object
+		users - REFA0
+
+		return - a string describing the actions taken in this turn or null when no turn was taken
+	*/
 	//determine order
 	if(battle.turn_order.length > 0){
 		//check if user is still in party
@@ -1945,10 +2224,20 @@ function do_turn(battle, users){
 	return null
 };
 
-
-
-//determine participants
 function determine_participants(participating_parties, users){
+	/*
+		creates participant objects for parties invovled in a battle
+
+		when a battle is created, the battle needs to add all members of all participating parties into the
+		battle participants dictionary, this does that.
+
+		participating_parties - parties that are invovled in the battle
+		users - REFA0
+
+		return - an array
+			0 - all parties in the battle
+			1 - a dictionary of all battle participants
+	*/
 	//set parties in combat
 	//parties that we will use for determining order
 	var registered_parties = [];
@@ -2002,11 +2291,17 @@ function determine_participants(participating_parties, users){
 	return [registered_parties, participants]
 }
 
-
-
 //progress battle
 function progress_battle(battle, users){
-	//progress all particpants ac by 1 unit, progress battle by 1 turn
+	/*
+		progress a battle object's turn value by 1, and checks if a character has a turn
+		if a character has a turn it adds them to the turn order
+
+		battle - a battle object
+		users - REFA0
+
+		return - if a character has a turn, returns that character's id else returns null
+	*/
 	battle.turn += 1;
 	//check if particpants is not empty
 	if(Object.keys(battle.participants).length > 0){
@@ -2058,13 +2353,18 @@ function progress_battle(battle, users){
 	}
 };
 
-
-
 //Progress active battles
 function execute_battles(users){
-	//progress duels
 	/*
-		this function only progressess duels forwards by setting turn orders and stuff etc
+		progressess all battles duels and encounter forward until a character has a turn
+
+		for example say we have two battles A and B
+		A requires 70 times units before a character has a turn
+		B requires 30 time units before a character has a turn
+
+		users - REFA0
+
+		return - a string detailing the events of a battle or the string "NILL" if a problem occured
 	*/
 	var all_duels = battles.duels;
 	//check if there are duel requests
@@ -2255,15 +2555,21 @@ function execute_battles(users){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //STATUS_EFFECTS/////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 //cast a single status skill
 function cast_status_skill(user, skill){
+	/*
+		executes the logic for skills that are defined as status effect skills
+
+		user - a character object
+		skill - a skill object
+
+		return - a string detailing the outcome of the skill used
+	*/
 	//return text
 	var return_text = "";
 	//first we need to find the passive skills of the user
@@ -2364,11 +2670,20 @@ function cast_status_skill(user, skill){
 	return return_text
 };
 
-
-
 //cast debuffs
-//percent damage needs a cap
 function cast_status_debuff(duel, users, user, debuff){
+	/*
+		the logic for the execution of skills typed as debuffs
+
+		percent damage needs a cap
+
+		duel - a battle object
+		users - REFA0
+		user - a character object
+		debuff - the debuff object
+		
+		return - a string value detailing the effects of a status effect
+	*/
 	return_text = "";
 	//first we need to find the character
 	var chr = user;
@@ -2599,15 +2914,22 @@ function cast_status_debuff(duel, users, user, debuff){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //DAMAGE_CALC////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 //generate base power
 function calc_base_power(user_stats, target_stats, power){
+	/*
+		caclulates the base power of a skill from stats and a multiplier
+
+		user_stats - a refernce to the stats of a character object
+		target_stats - a list of all stats used in the calculation
+		power - a multiplier
+
+		return - a numerical value
+	*/
 	var total_power = 0;
 	for(var i = 0; i < target_stats.length; i++){
 		total_power += user_stats[target_stats[i]]*(power/100)
@@ -2615,10 +2937,17 @@ function calc_base_power(user_stats, target_stats, power){
 	return total_power
 };
 
-
-
 //attack functions
 function calc_damage(skill, stock_power, target){
+	/*
+		calculates the damage done by a skill on a target
+
+		skill - a skill object
+		stock_power - a numerical value of how strong the skill is that is greater than 0
+		target - a character boject
+
+		return - a numerical value of damage dealt
+	*/
 	
 	//determine stats of the skill
 	var effect = skill.effect;
@@ -2662,10 +2991,17 @@ function calc_damage(skill, stock_power, target){
 	return final_damage
 };
 
-
-
 //calculate heal strength
 function calc_heal(skill, user, target){
+	/*
+		calculates how strong a healing effect is on a character
+
+		skill - a skill object
+		user - the character object of the one casting the spell
+		target - a character object
+
+		return - a numerical value
+	*/
 	//determine stats of the skill
 	var effect = skill.effect;
 	var target_stats = skill.target_stats;
@@ -2691,15 +3027,24 @@ function calc_heal(skill, user, target){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //HIT_HANDLE/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CASTING_LOGIC_OF_STATUS_SKILLS/////////////////////////////////////////////////////////////////////////////////////////
 
-
-//single apply status effect
 function single_apply_status(skill, user, target, weaken){
+	/*
+		adds a status effect tag to a character
+
+		skill - a skill object
+		user - the user character that applied the status effect
+		target - a character object
+		weaken - a multiplier value
+
+		return - a string that shows the result of the status effect
+	*/
 	var return_text = "";
 	//buff guarnteed to apply onto targets
 	for(var key in skill.bonus_effects){
@@ -2721,10 +3066,20 @@ function single_apply_status(skill, user, target, weaken){
 	return return_text
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CASTING_LOGIC_OF_SKILLS////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//single_heal_handle
 function single_heal_handle(skill, user, target, weaken){
+	/*
+		the logic for healing spells
+
+		skill - a skill object
+		user - the character that cast the spell
+		target - a character object
+		weaken - a multiplier
+
+		return - a string of the result of the skill
+	*/
 	var user_character = user;
 	var target_character = target;
 	var target_eva = target.combat_stats.evasion;
@@ -2769,10 +3124,22 @@ function single_heal_handle(skill, user, target, weaken){
 	return return_text
 };
 
-
-
-//single_hit_handle
 function single_hit_handle(skill, users, user, target, weaken){
+	/*
+		the logic for when a offensive skill is used against a target
+		-bonus effects on the skill
+		-damage calculations critical hits
+		-target passive effects and offender passive effects
+		-applying extra skill effects after the skill is used
+
+		skill - a skill object
+		users - REF0A
+		user - the character object that inititated the skill
+		target - a character object
+		weaken - a multiplier
+
+		return - a string of the results of the skill use
+	*/
 	//character stats
 	var user_character = user;
 	var target_character = target;
@@ -3083,10 +3450,20 @@ function single_hit_handle(skill, users, user, target, weaken){
 	return return_text
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CASTING_LOGIC_OF_PASSIVE_SKILLS////////////////////////////////////////////////////////////////////////////////////////
 
-
-//cast passive
 function apply_passive(skill, user, target, weaken){
+	/*
+		the logic of behind character executing passive skills
+
+		skill - a skill object
+		user - a character object, the initiator of the passive skill
+		target - character object
+		weaken - a multiplier
+
+		return - a string detailing the effects of a passive skill
+	*/
 	var user_character = user;
 	var target_character = target;
 	var return_text = "";
@@ -3105,10 +3482,21 @@ function apply_passive(skill, user, target, weaken){
 	return return_text
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CASTING_SKILLS/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//skill active
 function execute_single_cast(user, target, skill, users){
+	/*
+		determines if a character is capable of casting a skill then if they are
+		executes the casting logic behind the skill depending on the skill type
+
+		user - a character object
+		target - a character object
+		skill - a skill object
+		users - REF0A
+
+		return - a string detailing the effects of trying to cast a skill
+	*/
 	//find player character
 	var user_character = user;
 	var target_character = target;
@@ -3211,10 +3599,23 @@ function execute_single_cast(user, target, skill, users){
 	return return_text
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//EXECUTION_OF_SKILLS////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//use_skill
 function use_skill(user, target, skill, users){
+	/*
+		the logic behind using a skill, will cast a skill based on conditions such as wielding two weapons or how many
+		times a skill executes when cast
+
+		also reduces resets how many action points a user has in a battle by the action cost of the skill
+
+		user - a character object
+		target - character object
+		skill - a skill object
+		users -REF0A
+
+		return - a string of the result of using a skill
+	*/
 	var return_text = "";
 	//find the users character
 	var user_character = user;
@@ -3275,15 +3676,21 @@ function use_skill(user, target, skill, users){
 }
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //INVENTORY//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//fomatt inventory
+//fomat inventory
 function formatt_inventory(target, page){
+	/*
+		generates a string that describes a portion of a player's inventory based on the page number given
+
+		target - the user object from users
+		page - an integer of which page to display
+
+		return - a string
+	*/
 	var return_text = "";
 	//page
 	var tpage = Math.floor(Number(page));
@@ -3319,10 +3726,18 @@ function formatt_inventory(target, page){
 	return return_text
 };
 
-
-
 //equip item
 function equipItem(users, user, item, slot){
+	/*
+		tries to equip an item into a specific slot on a user
+
+		users - REF0A
+		user - the user object from users
+		item - the item object to equip
+		slot - a string
+
+		return - a string value of the results of trying to equip an item
+	*/
 	var return_text = "";
 	//check which slot the item goes in
 	var item_slot = item.wield_type;
@@ -3421,10 +3836,17 @@ function equipItem(users, user, item, slot){
 	return return_text
 };
 
-
-
-//use items that can be used, mainly consumable items
 function use_items(item, users, user, target){
+	/*
+		use items that can be used, mainly consumable items
+
+		item - a item object
+		users - REF0A
+		user - a user object from users
+		target - a character object
+
+		return - a string value detailing the effects of using a object, returns null when no conditions have been met
+	*/
 	var return_text = null;
 	//Find the characters
 	var user_chr = null;
@@ -3518,16 +3940,20 @@ function use_items(item, users, user, target){
 	return return_text
 }
 
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //TOWNS//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//MISC FUNCTIONS FOR ALL SHOPS
-//save store data
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//FUNCTIONS_FOR_ALL_TOWNS////////////////////////////////////////////////////////////////////////////////////////////////
+
 function save_towns(){
+	/*
+		saves the current instance of towns to a towns.json file, including all of the items in shops etc
+
+		return - no return value
+	*/
 	//grab required data
 	var json = JSON.stringify(towns_list);
 	
@@ -3536,10 +3962,12 @@ function save_towns(){
 	file_system.writeFileSync('towns.json', json);
 };
 
-
-
-//convert milliseconds to hours
 function timeConvertHours(miliseconds){
+	/*
+		convert milliseconds to hours
+
+		return - a string value showing hours and minutes
+	*/
 	var num = miliseconds;
 	if(num < 0){
 		num = 0
@@ -3550,10 +3978,15 @@ function timeConvertHours(miliseconds){
 	return rhours+" hours "+minutes+" minutes"
 };
 
-
-
-//identifier
 function create_item_identifier(dictionary){
+	/*
+		given a dictionary, generates a new key value to be used as an id
+		the key value is 6 digits long
+
+		dictionary - the dictionary to generate the new key value in
+
+		return - a numerical value
+	*/
 	var identifier = Math.floor((Math.random()*900000))+100000;
 	var i = 0;
 	while((identifier in dictionary)&&(i < 10)){
@@ -3563,10 +3996,15 @@ function create_item_identifier(dictionary){
 	return identifier = Math.floor((Math.random()*900000))+100000;
 };
 
-
-
 //restock store
 function restock_store(store){
+	/*
+		fills a stores inventory until the maximum number of items has been reached
+
+		store - a store object
+
+		return - NA
+	*/
 	var new_stock = {}
 	//add old stock
 	for(var key in store.stock){
@@ -3578,7 +4016,7 @@ function restock_store(store){
 		var keys = Object.keys(stock_equipment);
 		var random_key = Math.floor(Math.random()*keys.length);
 		var id = create_item_identifier(new_stock);
-		var item = create_equipement(keys[random_key], store.tier, id, 1);
+		var item = create_equipment(keys[random_key], store.tier, id, 1);
 		if(item != null){
 			new_stock[id] = item
 		}
@@ -3586,15 +4024,16 @@ function restock_store(store){
 	return new_stock
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//MAIN_FUNCTION_FOR_TOWNS////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-//MAIN FOR CITIES
-//update cities
 function update_cities(){
 	/*
+		executes the logic for towns and cities
 		1. Check if stores need to be restocked
 		2. Check if quests need to be updated
+
+		return - NA
 	*/
 	for(var key in towns_list){
 		//this town
@@ -3654,11 +4093,20 @@ function update_cities(){
 	save_towns()
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//USER_INTERACTION_WITH_SHOPS////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//BUY SELL STUFF
 //give item
 function give_item(users, user, item){
+	/*
+		places an item into a users inventory with a new id
+
+		users - REF0A
+		user - a user object under users
+		item - a item object
+
+		return - NA
+	*/
 	//item id
 	var identifier = Math.floor((Math.random()*900000))+100000;
 	//check user has a character
@@ -3675,11 +4123,21 @@ function give_item(users, user, item){
 	};
 };
 
-
-
 //buy item
-//buy unique items can only buy one at a time
 function buy_unique_item(users, user, l, purchase_id, currency){
+	/*
+		buy unique items can only buy one at a time
+
+		users - REF0A
+		user - a user object under users
+		l - an array
+			0 - the name of the town
+			1 - the name of the store
+		purchase_id - the id of the item to buy from the shop
+		currency - the name of the currency used
+
+		return - a string value detailing the transaction
+	*/
 	var return_text = null;
 	var item = towns_list[l[0]][l[1]].stock[purchase_id];
 	//check if user has the money to buy the item
@@ -3720,9 +4178,22 @@ function buy_unique_item(users, user, l, purchase_id, currency){
 	return return_text
 };
 
-
 //buy bulk item
 function buy_bulk_item(users, user, l, purchase_id, quantity, currency){
+	/*
+		buy many generic items at once from a shop and add them to the player inventory
+
+		users - REFA0
+		user - a user object
+		l - an array 
+			0 - the name of the town
+			1 - the name of the shop
+		purchase_id - the id of the item to buy
+		quantity - a numerical value
+		currency - the name of the currency to use
+
+		return - a string value detailing the transcation
+	*/
 	var return_text = null;
 	//return a list of things
 	var bulk_shop = towns_list[l[0]][l[1]].items_list;
@@ -3786,10 +4257,20 @@ function buy_bulk_item(users, user, l, purchase_id, quantity, currency){
 	return return_text
 };
 
-
-
 //sell item to shop
 function sell_item(users, user, item_id, l){
+	/*
+		removes an item from the player's inventory and adds it to the shop's inventory if applicable
+
+		users - REF0A
+		user - a user object under users
+		item_id - the id of the item in the player's inventory
+		l - an array
+			0 - the name of the town
+			1 - the name of the shop
+
+		return - a string value detailing the transaction
+	*/
 	var return_text = null;
 	var item = users[user].jrpg_data.inventory[item_id];
 	//user has item to sell
@@ -3823,11 +4304,21 @@ function sell_item(users, user, item_id, l){
 	return return_text
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DISPLAYING_SHOP_PAGES//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//FORMATT SHOPS
 //formatt trader page
 function formatt_shop(town, shop, page, shop_name){
+	/*
+		displays a page of a shop for unique items
+
+		town - the town object
+		shop - the shop object
+		page - an integer
+		shop_name - a string value
+
+		return - a string value
+	*/
 	var return_text = "";
 	//page
 	var tpage = Math.floor(Number(page));
@@ -3872,9 +4363,18 @@ function formatt_shop(town, shop, page, shop_name){
 	return return_text
 };
 
-
 //formatt bulk item shop
 function formatt_bulk_shop(town, shop, page, shop_name){
+	/*
+		displays a page of a shop for items sold in bulk
+
+		town - the town object
+		shop - the shop object
+		page - an integer
+		shop_name - a string value
+
+		return - a string value
+	*/
 	var return_text = "";
 	//get page
 	var tpage = Math.floor(Number(page));
@@ -3912,15 +4412,20 @@ function formatt_bulk_shop(town, shop, page, shop_name){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //FORMATT_INFO///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DISPLAYING_ITEM_INFORMATION////////////////////////////////////////////////////////////////////////////////////////////
 
 //return item stats
 function fomatt_item_stats(item){
+	/*
+		item - a item object
+
+		return - a string value describing the stats of an item
+	*/
 	var return_text = null;
 	//return different formats for each type of equipment
 	if(item.type == "weapon" || item.type == "armor"){
@@ -3988,10 +4493,15 @@ function fomatt_item_stats(item){
 	return return_text
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DISPLAYING_SKILL_INFORMATION///////////////////////////////////////////////////////////////////////////////////////////
 
-
-//display skills
 function formatt_skills(object){
+	/*
+		object - a character object
+
+		return - a string value detailing all the skills of a character object
+	*/
 	var chr = object;
 	var fText = "";
 	
@@ -4005,10 +4515,12 @@ function formatt_skills(object){
 	return fText
 };
 
-
-
-//skill info
 function formatt_skill_info(skill_name){
+	/*
+		object - a skill object
+
+		return - a string value detailing the information on a skill
+	*/
 	var return_text = null;
 	if(skill_name in skills_list){
 		var skill = skills_list[skill_name];
@@ -4070,7 +4582,8 @@ function formatt_skill_info(skill_name){
 	return return_text
 };
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DISPLAYING_LOCATION_INFORMATION////////////////////////////////////////////////////////////////////////////////////////
 
 //zone info
 function formatt_zone_info(location_object){
@@ -4079,6 +4592,8 @@ function formatt_zone_info(location_object){
 		consists of an array
 		[0] = zone_name
 		[1] = player location
+
+		return - a string value describing the location
 	*/
 	var return_text = null;
 	//check if zone exists
@@ -4100,15 +4615,21 @@ function formatt_zone_info(location_object){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //TARGETING//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//return user id from sting
 function target_user_id(string){
+	/*
+		return user id from string
+		this is necessary because of discords mention method and how it is actually just an elongated string with custom
+		formatting
+
+		string - the mention message from discord
+
+		return - the actual id component of the message as a string
+	*/
 	var target_id = 0;
 	target_id = string.substring(string.lastIndexOf("<@") + 2, string.lastIndexOf(">"));
 	//nicknames
@@ -4119,19 +4640,28 @@ function target_user_id(string){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //WORLD_MAP//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DETERMINING_POSITION///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //check location
-/*
-	1.check_location if the player is a town or location
-	2.determine_location is used to finding where the player is on the world map
-*/
 function check_location(user, premise){
+	/*
+		returns an array of the location names of where the user is
+
+		1.check_location if the player is a town or location
+		2.determine_location is used to finding where the player is on the world map
+
+		user - a user object
+		premise - a sub location of a location for example the name of a shop
+
+		return - an array
+			0 - the name of the location
+			1 - the name of the sub location
+	*/
 	//target location
 	var this_location = null;
 	//check if user is in a town
@@ -4163,9 +4693,19 @@ function check_location(user, premise){
 	return this_location
 };
 
-
-
 function determine_location(position){
+	/*
+		determines the location from an x,y cordinate pair
+		basically finds the bounding polygon which the cordinate pair exists in
+
+		position - an array of an x,y position
+			0 - number value
+			1 - number value
+
+		return - an array
+			0 - the location
+			1 - the x,y cordinate point that was used to test for the location
+	*/
 	//we need to find this value
 	var this_location = null;
 	/*
@@ -4295,11 +4835,23 @@ function determine_location(position){
 	return this_location
 };
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//MOVING_PARTIES/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //move party command
-//destination should be array [0] is x and [1] is y
 function move_party(local_party, users, destination){
+	/*
+		move a party object to a new position, change the position variable of a party
+		test for encounters and moving over impassible terrain
+		
+		local_party - a party object
+		users - REFA0
+		destination - an array
+			0 - x cordinate
+			1 - y cordinate
+
+		return - a string detailing the results of trying to move the party
+	*/
 	//message text
 	var return_text = null;
 	//start cordinates
@@ -4533,13 +5085,20 @@ function move_party(local_party, users, destination){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //UI/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //ui during battles, uses reactions to input commands
 async function get_ui(ui_name, options){
+	/*
+		create a the image for a ui based on options
+
+		ui_name - a string that is a ui_objects key
+		options - an array containing extra information for each type of ui, the requirements are shown for each ui_name
+
+		return - a canvas object that is the image of the ui
+	*/
 	//return canvas
 	var canvas = null
 	/*
@@ -4718,14 +5277,18 @@ async function get_ui(ui_name, options){
 };
 
 
-	
-/*
-	return a keyed dictionary
-	Example:
-	1 : NAME
-	2 : NAME
-*/
 function return_targets(input_battle){
+	/*
+		return a keyed dictionary of input values to target names
+		Example:
+		1 : NAME
+		2 : NAME
+		this way if the number 1 is selected then the target name can be chosen
+
+		input_battle - a battle object
+
+		return - a keyed dictionary
+	*/
 	//return list and key value for new list
 	var list = {};
 	var key_value = 0;
@@ -4737,14 +5300,20 @@ function return_targets(input_battle){
 	return list
 };
 
-
-
-//function ui logic
-// 0 MAIN MENU
-// 1 BASIC ATTACK
-// 2 SKILL SELECT
-// 3 SKILL ATTACK SELECT
 async function uiLogic(reaction_message, ui_object, user_data){
+	/*
+		ui logic for how to react to reactions for each ui, the pages are listed below
+		0 MAIN MENU
+		1 BASIC ATTACK
+		2 SKILL SELECT
+		3 SKILL ATTACK SELECT
+
+		reaction_message - the message object that is being listened for
+		ui_object - a ui object
+		user_data - REFA0
+
+		return - NA, outputs directly to discord
+	*/
 	//based on the reaction and the ui_object, we make changes to the ui object
 	const input_emoji = reaction_message.emoji.name;
 	//combat ui
@@ -5041,36 +5610,40 @@ async function uiLogic(reaction_message, ui_object, user_data){
 };
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MODULE/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 //jrpg module call
+//all functions under module exports deal with determining what a command was called, what parameters were passed and then
+//executing the appropriate functions in the previous section in accordance.
 module.exports = {
-	
-	/*
-	jrpg_combat
-	
-	battle_contents:
-	1. run battles (returns array, 0.text, 1.ui)
-	*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//JRPG_COMBAT////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	jrpg_combat : function(msg_content, msg_author, users){
+		/*
+			jrpg_combat
+			
+			battle_contents:
+			1. run battles (returns array, 0.text, 1.ui)
+		*/
 		var combat_message = execute_battles(users);
 		return combat_message
 	},
-	
-	
-	
-	/*
-	jrpg_ui_main
-	*client is needed because of fetching discord ids
-	
-	1. battle ui
-	*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//JRPG_UI_MAIN///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	jrpg_ui_main : function(msg_content, msg_author, client, users){
+		/*
+			jrpg_ui_main
+			*client is needed because of fetching discord ids
+			
+			1. battle ui
+		*/
 		var message = msg_content;
 		var author = msg_author;
 		//check if author exists
@@ -5078,11 +5651,13 @@ module.exports = {
 		}else{
 			return "<NO USER PROFILE>"
 		};
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/*
 			BATTLE INTERFACE
 			1.TURN ORDER BAR
 			2.INTERACTABLE TURN PLATE
 		*/
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if(message.toLowerCase() == jrpg_commands['battle_ui']){
 			//ui_element
 			var ui_element = null;
@@ -5126,41 +5701,41 @@ module.exports = {
 			return ui_element
 		};
 	},
-	
-	
-	
-	/*
-	jrpg_ui_logic
-	*ui logic is for reacting to emoticons on ui elements
-	1. battle ui
-	*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//JRPG_UI_LOGIC//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	jrpg_ui_logic : function(reaction_message,ui_object,user_data){
+		/*
+			jrpg_ui_logic
+			*ui logic is for reacting to emoticons on ui elements
+			1. battle ui
+		*/
 		//fire ui logic function
 		uiLogic(reaction_message, ui_object, user_data)
 	},
 	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//JRPG_MAIN//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	/*
-	jrpg_main
-	
-	cities:
-	1.Update Cities
-	
-	command_contents:
-	1. create character
-	2. check stats
-	3. party commands
-	4. duel commands
-	*/
 	jrpg_main : function(msg_content, msg_author, users){
 		/*
-			jrpg_cities
+			jrpg_main
+			
+			cities:
+			1.Update Cities
+			
+			command_contents:
+			1. create character
+			2. check stats
+			3. party commands
+			4. duel commands
 		*/
+
+		//jrpg_cities
 		update_cities();
-		/*
-			Commands
-		*/
+
+		//Commands
 		//users
 		var message = msg_content;
 		var author = msg_author;
@@ -5177,12 +5752,14 @@ module.exports = {
 				CASE SENSITIVE SETTINGS
 			*/
 			msg_parts[0] = msg_parts[0].toLowerCase();
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				CREATE CHARACTER COMMAND
 				1.COMMAND
 				2.CHARACTER NAME
 				3.CHARACTER JOB
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			if((msg_parts[0] == jrpg_commands['create_character'])&&(msg_parts.length == 3)){
 				//check if in party, can only create_characters out of party
 				var p = check_party(author);
@@ -5209,11 +5786,13 @@ module.exports = {
 					return "<that job does not exist>"
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				CHECK STATS COMMAND
 				1.COMMAND
 				2.OPTIONAL TO CHECK OTHER CHARACTERS
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['check_stats'])&&(msg_parts.length < 3)){
 				//the stats of the character we want to display
 				var display_chr = null;
@@ -5253,9 +5832,11 @@ module.exports = {
 					return formatt_stats(display_chr)
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				CHECK SKILLS COMMAND
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['check_skills'])&&(msg_parts.length < 3)){
 				//the character we want to display
 				var display_chr = null;
@@ -5284,10 +5865,12 @@ module.exports = {
 					return formatt_skills(display_chr)
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				QUICK CHECK COMMANDS
 				1.quick_status
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['quick_status'])&&(msg_parts.length < 3)){
 				//the character we want to display
 				var display_chr = null;
@@ -5311,6 +5894,7 @@ module.exports = {
 					return formatt_quick_stats(display_chr)
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				PARTY COMMANDS
 				1. CREATE PARTIES
@@ -5319,6 +5903,7 @@ module.exports = {
 				4. DISBAND PARTIES
 				5. KICK MEMBERS
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//create party
 			else if((msg_parts[0] == jrpg_commands['party_create'])&&(msg_parts.length == 2)){
 				//check if user has a character
@@ -5501,11 +6086,13 @@ module.exports = {
 					}
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				DUEL COMMANDS
 				1. CREATE DUEL
 				3. COMBAT
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//call duel
 			else if((msg_parts[0] == jrpg_commands['call_duel'])&&(msg_parts.length == 2)){
 				//if user belongs to a party
@@ -5657,12 +6244,14 @@ module.exports = {
 					}
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				COMBAT COMMANDS
 				1. ATTACK
 				2. DEFEND
 				3. CAST SPELLS
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['combat_attack'])&&(msg_parts.length == 2)){
 				//if user belongs to a party
 				var p = check_party(author);
@@ -5875,6 +6464,7 @@ module.exports = {
 					return "<your party is not currently in a battle>"
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				Inventory commands
 				1. CHECK
@@ -5883,6 +6473,7 @@ module.exports = {
 				4. UNEQUIP
 				5. USE ITEMS
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			//check inventory of others
 			else if((msg_parts[0] == jrpg_commands['check_inventory'])&&(msg_parts.length >= 3)){
 				//target
@@ -6060,6 +6651,7 @@ module.exports = {
 					}
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				TOWN COMMANDS
 				1. Traders
@@ -6070,6 +6662,7 @@ module.exports = {
 					a.Check items
 					b.Buy items
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['trader'])&&(msg_parts.length >= 2)){
 				/*
 					commands:
@@ -6216,10 +6809,12 @@ module.exports = {
 					return "<you need to create a character first>"
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				INFO COMMANDS
 				1. Skill Info
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['skill_info'])&&(msg_parts.length >= 2)){
 				//if user has a character
 				if(users[author].jrpg_data.character != null){
@@ -6240,11 +6835,13 @@ module.exports = {
 					return "<you need to create a character first>"
 				}
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			/*
 				WORLD COMMANDS
 				1. current location
 				2. travel to
 			*/
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else if((msg_parts[0] == jrpg_commands['current_location'])&&(msg_parts.length >= 2)){
 				//find target id
 				var target_id = target_user_id(msg_parts[1]);

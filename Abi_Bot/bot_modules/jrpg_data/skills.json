@@ -1,673 +1,673 @@
 {
-	"basic_attack" : {
-		"name" : "attack",
-		"skill_name" : "basic_attack",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : null
-	},
-	"quick_strike" : {
-		"name" : "attack",
-		"skill_name" : "quick_strike",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : -30,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 60,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : null
-	},
-	"guard" : {
-		"name" : "passive",
-		"skill_name" : "guard",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "REDUCE_ALL_DAMAGE",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : 50,
-		"secondary_skill_power" : 1,
-		"hits" : null,
-		"bonus_effects" : null
-	},
-	"recovery" : {
-		"name" : "passive",
-		"skill_name" : "recovery",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "HP_REFRESH",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : 5,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" :  {
-			"effect_type" : "PERCENT"
-		}
-	},
-	"cleave" : {
-		"name" : "physical",
-		"skill_name" : "cleave",
-		"level" : 1,
-		"mp_cost" : 15,
-		"ac_cost" : 0,
-		"type" : "HIT_ALL",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 130,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : null
-	},
-	"critical_impact" : {
-		"name" : "physical",
-		"skill_name" : "critical_impact",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 100,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 225,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"boost" : {
-				"name" : "critical boost",
-				"stat" : "critical",
-				"amount" : 100
-			}
-		}
-	},
-	"shatter_drive" : {
-		"name" : "physical",
-		"skill_name" : "shatter_drive",
-		"level" : 1,
-		"mp_cost" : 5,
-		"ac_cost" : 25,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "armor break I",
-				"effect_name" : "stat_down",
-				"proc_chance" : 100,
-				"potency_type" : "PERCENT",
-				"potency" : 25,
-				"effect" : "defence",
-				"duration" : 3
-			}
-		}
-	},
-	"shatter_drive+" : {
-		"name" : "physical",
-		"skill_name" : "shatter_drive+",
-		"level" : 1,
-		"mp_cost" : 5,
-		"ac_cost" : 25,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "armor break II",
-				"effect_name" : "stat_down",
-				"proc_chance" : 100,
-				"potency_type" : "PERCENT",
-				"potency" : 50,
-				"effect" : "defence",
-				"duration" : 3
-			}
-		}
-	},
-	"prepare" : {
-		"name" : "buff",
-		"skill_name" : "prepare",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : -30,
-		"type" : "BUFF",
-		"effect" : "BUFF",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : null,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"prepared" : {
-				"name" : "buff_target",
-				"effect_name" : "boost hit",
-				"skill_name" : "prepared",
-				"duration" : 1
-			}
-		}
-	},
-	"prepared" : {
-		"name" : "passive",
-		"skill_name" : "prepared",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "BOOST",
-		"elemental_type" : null,
-		"target_stats" : ["hit"],
-		"skill_power" : 50,
-		"secondary_skill_power" : 2,
-		"hits" : 1,
-		"bonus_effects" : {
-			"effect_type" : "FLAT"
-		}
-	},
-	"cover" : {
-		"name" : "buff",
-		"skill_name" : "cover",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "BUFF",
-		"effect" : "BUFF",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : null,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"covered" : {
-				"name" : "buff_target",
-				"effect_name" : "cover target",
-				"skill_name" : "covered",
-				"duration" : 2
-			}
-		}
-	},
-	"covered" : {
-		"name" : "passive",
-		"skill_name" : "covered",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "PROTECTED",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : null,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-		}
-	},
-	"retaliate" : {
-		"name" : "passive",
-		"skill_name" : "retaliate",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "COUNTER_ALL",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : 33,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"use_skill" : {
-				"name" : "basic_attack",
-				"skill_name" : "basic_attack",
-				"target" : "enemy"
-			}
-		}
-	},
-	"dual_wield" : {
-		"name" : "passive",
-		"skill_name" : "dual_wield",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "DUAL_WIELD",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : null,
-		"secondary_skill_power" : null,
-		"hits" : null,
-		"bonus_effects" : null
-	},
-	"double_strike" : {
-		"name" : "physical",
-		"skill_name" : "double_strike",
-		"level" : 1,
-		"mp_cost" : 10,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : null
-	},
-	"venom_strike" : {
-		"name" : "physical",
-		"skill_name" : "venom_strike",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 20,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["attack_power"],
-		"skill_power" : 70,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor poison",
-				"effect_name" : "poison",
-				"proc_chance" : 100,
-				"potency_type" : "PERCENT",
-				"potency" : 6,
-				"effect" : "PHYSICAL",
-				"duration" : 2
-			}
-		}
-	},
-	"fortitude" : {
-		"name" : "passive",
-		"skill_name" : "fortitude",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "MP_REFRESH",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : 10,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"effect_type" : "PERCENT"
-		}
-	},
-	"restore" : {
-		"name" : "recover",
-		"skill_name" : "restore",
-		"level" : 1,
-		"mp_cost" : 30,
-		"ac_cost" : 0,
-		"type" : "HEAL",
-		"effect" : "MAGIC",
-		"elemental_type" : "LIGHT",
-		"target_stats" : ["magic_power","faith"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : null
-	},
-	"mana_shot" : {
-		"name" : "magic",
-		"skill_name" : "mana_shot",
-		"level" : 1,
-		"mp_cost" : 10,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : null,
-		"target_stats" : ["magic_power"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-		}
-	},
-	"hex_flare" : {
-		"name" : "magic",
-		"skill_name" : "hex_flare",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "LIGHT",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "blind",
-				"effect_name" : "blind",
-				"proc_chance" : 50,
-				"potency_type" : "PERCENT",
-				"potency" : 100,
-				"effect" : "MAGIC",
-				"duration" : 3
-			}
-		}
-	},
-	"hex_shock" : {
-		"name" : "magic",
-		"skill_name" : "hex_shock",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "LIGHTNING",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor paralysis",
-				"effect_name" : "paralysis",
-				"proc_chance" : 75,
-				"potency_type" : "PERCENT",
-				"potency" : 50,
-				"effect" : "MAGIC",
-				"duration" : 3
-			}
-		}
-	},
-	"hex_blaze" : {
-		"name" : "magic",
-		"skill_name" : "hex_blaze",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "FIRE",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor burn",
-				"effect_name" : "burn",
-				"proc_chance" : 75,
-				"potency_type" : "FLAT",
-				"potency" : 40,
-				"effect" : "MAGIC",
-				"duration" : 3
-			}
-		}
-	},
-	"hex_torrent" : {
-		"name" : "magic",
-		"skill_name" : "hex_torrent",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "WATER",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 90,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "sleep",
-				"effect_name" : "sleep",
-				"proc_chance" : 50,
-				"potency_type" : "FLAT",
-				"potency" : 5,
-				"effect" : "MAGIC",
-				"duration" : 3
-			}
-		}
-	},
-	"hex_gale" : {
-		"name" : "magic",
-		"skill_name" : "hex_gale",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "WIND",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor confusion",
-				"effect_name" : "confusion",
-				"proc_chance" : 50,
-				"potency_type" : "PERCENT",
-				"potency" : 33,
-				"effect" : "MAGIC",
-				"duration" : 3
-			}
-		}
-	},
-	"hex_frost" : {
-		"name" : "magic",
-		"skill_name" : "hex_frost",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "ICE",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 90,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor freeze",
-				"effect_name" : "stun",
-				"proc_chance" : 50,
-				"potency_type" : "FLAT",
-				"potency" : 5,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	},
-	"hex_shade" : {
-		"name" : "magic",
-		"skill_name" : "hex_shade",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "DARK",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 100,
-		"secondary_skill_power" : null,
-		"hits" : 1,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "deadly poison",
-				"effect_name" : "poison",
-				"proc_chance" : 75,
-				"potency_type" : "FLAT",
-				"potency" : 40,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	},
-	"hex_blast" : {
-		"name" : "physical",
-		"skill_name" : "hex_blast",
-		"level" : 1,
-		"mp_cost" : 30,
-		"ac_cost" : 10,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : "EARTH",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 66,
-		"secondary_skill_power" : null,
-		"hits" : 3,
-		"bonus_effects" : {
-		}
-	},
-	"sword_drive" : {
-		"name" : "physical",
-		"skill_name" : "sword_drive",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : null,
-		"target_stats" : ["magic_power", "attack_power"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-		}
-	},
-	"flare_drive" : {
-		"name" : "physical",
-		"skill_name" : "flare_drive",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : "LIGHT",
-		"target_stats" : ["magic_power", "attack_power"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "blind",
-				"effect_name" : "blind",
-				"proc_chance" : 33,
-				"potency_type" : "PERCENT",
-				"potency" : 100,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	},
-	"shock_drive" : {
-		"name" : "physical",
-		"skill_name" : "shock_drive",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : "LIGHTNING",
-		"target_stats" : ["magic_power", "attack_power"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor paralysis",
-				"effect_name" : "paralysis",
-				"proc_chance" : 33,
-				"potency_type" : "PERCENT",
-				"potency" : 50,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	},
-	"blaze_drive" : {
-		"name" : "physical",
-		"skill_name" : "blaze_drive",
-		"level" : 1,
-		"mp_cost" : 20,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "PHYSICAL",
-		"elemental_type" : "FIRE",
-		"target_stats" : ["magic_power", "attack_power"],
-		"skill_power" : 75,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "minor burn",
-				"effect_name" : "burn",
-				"proc_chance" : 33,
-				"potency_type" : "FLAT",
-				"potency" : 40,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	},
-	"mechanical_plating" : {
-		"name" : "passive",
-		"skill_name" : "mechanical_plating",
-		"level" : 1,
-		"mp_cost" : 0,
-		"ac_cost" : 0,
-		"type" : "PASSIVE",
-		"effect" : "REDUCE_ALL_DAMAGE",
-		"elemental_type" : null,
-		"target_stats" : null,
-		"skill_power" : 10,
-		"secondary_skill_power" : 2,
-		"hits" : null,
-		"bonus_effects" : null
-	},
-	"heat_beam" : {
-		"name" : "magic",
-		"skill_name" : "heat_beam",
-		"level" : 1,
-		"mp_cost" : 5,
-		"ac_cost" : 0,
-		"type" : "HIT",
-		"effect" : "MAGIC",
-		"elemental_type" : "FIRE",
-		"target_stats" : ["magic_power"],
-		"skill_power" : 66,
-		"secondary_skill_power" : null,
-		"hits" : 2,
-		"bonus_effects" : {
-			"target_status" : {
-				"name" : "burned",
-				"effect_name" : "burn",
-				"proc_chance" : 33,
-				"potency_type" : "PERCENT",
-				"potency" : 5,
-				"effect" : "MAGIC",
-				"duration" : 2
-			}
-		}
-	}
+  "basic_attack": {
+    "name": "attack",
+    "skill_name": "basic_attack",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": null
+  },
+  "quick_strike": {
+    "name": "attack",
+    "skill_name": "quick_strike",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": -30,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 60,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": null
+  },
+  "guard": {
+    "name": "passive",
+    "skill_name": "guard",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "REDUCE_ALL_DAMAGE",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": 50,
+    "secondary_skill_power": 1,
+    "hits": null,
+    "bonus_effects": null
+  },
+  "recovery": {
+    "name": "passive",
+    "skill_name": "recovery",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "HP_REFRESH",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": 5,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "effect_type": "PERCENT"
+    }
+  },
+  "cleave": {
+    "name": "physical",
+    "skill_name": "cleave",
+    "level": 1,
+    "mp_cost": 15,
+    "ac_cost": 0,
+    "type": "HIT_ALL",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 130,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": null
+  },
+  "critical_impact": {
+    "name": "physical",
+    "skill_name": "critical_impact",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 100,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 225,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "boost": {
+        "name": "critical boost",
+        "stat": "critical",
+        "amount": 100
+      }
+    }
+  },
+  "shatter_drive": {
+    "name": "physical",
+    "skill_name": "shatter_drive",
+    "level": 1,
+    "mp_cost": 5,
+    "ac_cost": 25,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "armor break I",
+        "effect_name": "stat_down",
+        "proc_chance": 100,
+        "potency_type": "PERCENT",
+        "potency": 25,
+        "effect": "defence",
+        "duration": 3
+      }
+    }
+  },
+  "shatter_drive+": {
+    "name": "physical",
+    "skill_name": "shatter_drive+",
+    "level": 1,
+    "mp_cost": 5,
+    "ac_cost": 25,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "armor break II",
+        "effect_name": "stat_down",
+        "proc_chance": 100,
+        "potency_type": "PERCENT",
+        "potency": 50,
+        "effect": "defence",
+        "duration": 3
+      }
+    }
+  },
+  "prepare": {
+    "name": "buff",
+    "skill_name": "prepare",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": -30,
+    "type": "BUFF",
+    "effect": "BUFF",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": null,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "prepared": {
+        "name": "buff_target",
+        "effect_name": "boost hit",
+        "skill_name": "prepared",
+        "duration": 1
+      }
+    }
+  },
+  "prepared": {
+    "name": "passive",
+    "skill_name": "prepared",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "BOOST",
+    "elemental_type": null,
+    "target_stats": [ "hit" ],
+    "skill_power": 50,
+    "secondary_skill_power": 2,
+    "hits": 1,
+    "bonus_effects": {
+      "effect_type": "FLAT"
+    }
+  },
+  "cover": {
+    "name": "buff",
+    "skill_name": "cover",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "BUFF",
+    "effect": "BUFF",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": null,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "covered": {
+        "name": "buff_target",
+        "effect_name": "cover target",
+        "skill_name": "covered",
+        "duration": 2
+      }
+    }
+  },
+  "covered": {
+    "name": "passive",
+    "skill_name": "covered",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "PROTECTED",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": null,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+    }
+  },
+  "retaliate": {
+    "name": "passive",
+    "skill_name": "retaliate",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "COUNTER_ALL",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": 33,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "use_skill": {
+        "name": "basic_attack",
+        "skill_name": "basic_attack",
+        "target": "enemy"
+      }
+    }
+  },
+  "dual_wield": {
+    "name": "passive",
+    "skill_name": "dual_wield",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "DUAL_WIELD",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": null,
+    "secondary_skill_power": null,
+    "hits": null,
+    "bonus_effects": null
+  },
+  "double_strike": {
+    "name": "physical",
+    "skill_name": "double_strike",
+    "level": 1,
+    "mp_cost": 10,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": null
+  },
+  "venom_strike": {
+    "name": "physical",
+    "skill_name": "venom_strike",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": -20,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "attack_power" ],
+    "skill_power": 50,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor poison",
+        "effect_name": "poison",
+        "proc_chance": 100,
+        "potency_type": "PERCENT",
+        "potency": 6,
+        "effect": "PHYSICAL",
+        "duration": 2
+      }
+    }
+  },
+  "fortitude": {
+    "name": "passive",
+    "skill_name": "fortitude",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "MP_REFRESH",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": 10,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "effect_type": "PERCENT"
+    }
+  },
+  "restore": {
+    "name": "recover",
+    "skill_name": "restore",
+    "level": 1,
+    "mp_cost": 30,
+    "ac_cost": 0,
+    "type": "HEAL",
+    "effect": "MAGIC",
+    "elemental_type": "LIGHT",
+    "target_stats": [ "magic_power", "faith" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": null
+  },
+  "mana_shot": {
+    "name": "magic",
+    "skill_name": "mana_shot",
+    "level": 1,
+    "mp_cost": 10,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": null,
+    "target_stats": [ "magic_power" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+    }
+  },
+  "hex_flare": {
+    "name": "magic",
+    "skill_name": "hex_flare",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "LIGHT",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "blind",
+        "effect_name": "blind",
+        "proc_chance": 50,
+        "potency_type": "PERCENT",
+        "potency": 100,
+        "effect": "MAGIC",
+        "duration": 3
+      }
+    }
+  },
+  "hex_shock": {
+    "name": "magic",
+    "skill_name": "hex_shock",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "LIGHTNING",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor paralysis",
+        "effect_name": "paralysis",
+        "proc_chance": 75,
+        "potency_type": "PERCENT",
+        "potency": 50,
+        "effect": "MAGIC",
+        "duration": 3
+      }
+    }
+  },
+  "hex_blaze": {
+    "name": "magic",
+    "skill_name": "hex_blaze",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "FIRE",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor burn",
+        "effect_name": "burn",
+        "proc_chance": 75,
+        "potency_type": "FLAT",
+        "potency": 40,
+        "effect": "MAGIC",
+        "duration": 3
+      }
+    }
+  },
+  "hex_torrent": {
+    "name": "magic",
+    "skill_name": "hex_torrent",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "WATER",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 90,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "sleep",
+        "effect_name": "sleep",
+        "proc_chance": 50,
+        "potency_type": "FLAT",
+        "potency": 5,
+        "effect": "MAGIC",
+        "duration": 3
+      }
+    }
+  },
+  "hex_gale": {
+    "name": "magic",
+    "skill_name": "hex_gale",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "WIND",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor confusion",
+        "effect_name": "confusion",
+        "proc_chance": 50,
+        "potency_type": "PERCENT",
+        "potency": 33,
+        "effect": "MAGIC",
+        "duration": 3
+      }
+    }
+  },
+  "hex_frost": {
+    "name": "magic",
+    "skill_name": "hex_frost",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "ICE",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 90,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor freeze",
+        "effect_name": "stun",
+        "proc_chance": 50,
+        "potency_type": "FLAT",
+        "potency": 5,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  },
+  "hex_shade": {
+    "name": "magic",
+    "skill_name": "hex_shade",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "DARK",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 100,
+    "secondary_skill_power": null,
+    "hits": 1,
+    "bonus_effects": {
+      "target_status": {
+        "name": "deadly poison",
+        "effect_name": "poison",
+        "proc_chance": 75,
+        "potency_type": "FLAT",
+        "potency": 40,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  },
+  "hex_blast": {
+    "name": "physical",
+    "skill_name": "hex_blast",
+    "level": 1,
+    "mp_cost": 30,
+    "ac_cost": 10,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": "EARTH",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 66,
+    "secondary_skill_power": null,
+    "hits": 3,
+    "bonus_effects": {
+    }
+  },
+  "sword_drive": {
+    "name": "physical",
+    "skill_name": "sword_drive",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": null,
+    "target_stats": [ "magic_power", "attack_power" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+    }
+  },
+  "flare_drive": {
+    "name": "physical",
+    "skill_name": "flare_drive",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": "LIGHT",
+    "target_stats": [ "magic_power", "attack_power" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+      "target_status": {
+        "name": "blind",
+        "effect_name": "blind",
+        "proc_chance": 33,
+        "potency_type": "PERCENT",
+        "potency": 100,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  },
+  "shock_drive": {
+    "name": "physical",
+    "skill_name": "shock_drive",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": "LIGHTNING",
+    "target_stats": [ "magic_power", "attack_power" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor paralysis",
+        "effect_name": "paralysis",
+        "proc_chance": 33,
+        "potency_type": "PERCENT",
+        "potency": 50,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  },
+  "blaze_drive": {
+    "name": "physical",
+    "skill_name": "blaze_drive",
+    "level": 1,
+    "mp_cost": 20,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "PHYSICAL",
+    "elemental_type": "FIRE",
+    "target_stats": [ "magic_power", "attack_power" ],
+    "skill_power": 75,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+      "target_status": {
+        "name": "minor burn",
+        "effect_name": "burn",
+        "proc_chance": 33,
+        "potency_type": "FLAT",
+        "potency": 40,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  },
+  "mechanical_plating": {
+    "name": "passive",
+    "skill_name": "mechanical_plating",
+    "level": 1,
+    "mp_cost": 0,
+    "ac_cost": 0,
+    "type": "PASSIVE",
+    "effect": "REDUCE_ALL_DAMAGE",
+    "elemental_type": null,
+    "target_stats": null,
+    "skill_power": 10,
+    "secondary_skill_power": 2,
+    "hits": null,
+    "bonus_effects": null
+  },
+  "heat_beam": {
+    "name": "magic",
+    "skill_name": "heat_beam",
+    "level": 1,
+    "mp_cost": 5,
+    "ac_cost": 0,
+    "type": "HIT",
+    "effect": "MAGIC",
+    "elemental_type": "FIRE",
+    "target_stats": [ "magic_power" ],
+    "skill_power": 66,
+    "secondary_skill_power": null,
+    "hits": 2,
+    "bonus_effects": {
+      "target_status": {
+        "name": "burned",
+        "effect_name": "burn",
+        "proc_chance": 33,
+        "potency_type": "PERCENT",
+        "potency": 5,
+        "effect": "MAGIC",
+        "duration": 2
+      }
+    }
+  }
 }
